@@ -147,6 +147,9 @@ ul{padding:0;list-style:none}
 .card h3::after{content:"";width:6px;height:6px;background:var(--mint);border-radius:1px;flex:none;opacity:0;transform:translateX(-5px);transition:all .3s cubic-bezier(.2,.7,.2,1)}
 .card:hover h3::after{opacity:1;transform:none}
 .card p{font-size:var(--fs-small);color:var(--ink-2);margin:0;line-height:1.45}
+/* fit:"contain" on a project — show the whole image instead of cropping to fill */
+.card .shot.fit-contain img,.p-hero.fit-contain img{object-fit:contain;background:var(--paper-2)}
+.card:hover .shot.fit-contain img{transform:scale(1.02)}
 @media (max-width:1180px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:820px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:520px){.grid{grid-template-columns:1fr}}
@@ -355,23 +358,23 @@ const PROFILE = {
    ============================================================ */
 const PROJECTS = [
   /* ---------- COMPUTATION ---------- */
-  {
-    id:"section-automation", cat:"Computation", title:"Section Automation Plugin", year:"2026",
-    image:"", tags:["Automation","Tooling"],
-    sub:"A Rhino 8 / Grasshopper plugin that automates section drawing and sheet set generation.",
-    meta:{Role:"Sole developer",Context:"HKS LINE research division",Stack:"C#, Python, RhinoCommon",Duration:"May — Aug 2026"},
-    blocks:[
-      {tag:"The problem",h:"Section documentation is hours of identical, error-prone drafting",
-       p:"Cutting sections, naming views, laying them out to scale, dropping in title blocks and key plans — every project repeats the same sequence by hand, and every hand-made sheet set drifts out of sync the moment the model changes."},
-      {tag:"What I built",h:"Clipping planes, named views, scaled layouts, title blocks and key plans, generated",
-       p:"The plugin walks the model and produces the whole documentation set programmatically. I engineered it as a modular, unit-aware architecture so it survives projects in imperial and metric without a rewrite, and resolved a set of RhinoCommon API issues around view generation and PDF export along the way."},
-      {tag:"Outcome",h:"Shipped into the LINE workflow and replacing manual drafting",
-       p:"Built independently over a summer internship and handed off to the team as a working tool rather than a prototype."}
-    ]
-  },
+  // {
+  //   id:"section-automation", cat:"Computation", title:"Section Automation Plugin", year:"2026", wip:true,
+  //   image:"", tags:["Automation","Tooling"],
+  //   sub:"A Rhino 8 / Grasshopper plugin that automates section drawing and sheet set generation.",
+  //   meta:{Role:"Sole developer",Context:"HKS LINE research division",Stack:"C#, Python, RhinoCommon",Duration:"May — Aug 2026"},
+  //   blocks:[
+  //     {tag:"The problem",h:"Section documentation is hours of identical, error-prone drafting",
+  //      p:"Cutting sections, naming views, laying them out to scale, dropping in title blocks and key plans — every project repeats the same sequence by hand, and every hand-made sheet set drifts out of sync the moment the model changes."},
+  //     {tag:"What I built",h:"Clipping planes, named views, scaled layouts, title blocks and key plans, generated",
+  //      p:"The plugin walks the model and produces the whole documentation set programmatically. I engineered it as a modular, unit-aware architecture so it survives projects in imperial and metric without a rewrite, and resolved a set of RhinoCommon API issues around view generation and PDF export along the way."},
+  //     {tag:"Outcome",h:"Shipped into the LINE workflow and replacing manual drafting",
+  //      p:"Built independently over a summer internship and handed off to the team as a working tool rather than a prototype."}
+  //   ]
+  // },
   {
     id:"gesture-to-robot", cat:"Computation", title:"Gesture-to-Robot Collaborative Drawing", year:"2026",
-    image:"", tags:["Robotics","Computer Vision","AI/ML"],
+    image:"images/computation/air/air_profile.gif", tags:["Robotics","Computer Vision","AI/ML"],
     sub:"A robot that watches you draw in the air and answers with a line of its own.",
     meta:{Role:"Design + build",Context:"Robotics with Perception, CMU",Stack:"Intel RealSense, MediaPipe, ROS, Grasshopper, LLM API",Duration:"Jan — Apr 2026"},
     blocks:[
@@ -414,22 +417,23 @@ const PROJECTS = [
     ]
   },
   {
-    id:"tangible-telepresence", cat:"Computation", title:"Tangible Telepresence", year:"2025", wip:true,
-    image:"", tags:["Physical Computing","Interaction"],
+    id:"tangible-telepresence", cat:"Computation", title:"Tangible Telepresence", year:"2025",
+    image:"images/computation/tangible/tangible.gif", tags:["Physical Computing","Interaction"],
     sub:"Presence at a distance, made physical.",
     meta:{Role:"Design + build",Context:"Carnegie Mellon",Status:"Case study in progress"},
     blocks:[]
   },
   {
-    id:"perspective-rectifier", cat:"Computation", title:"Perspective Rectifier", year:"2026", wip:true,
-    image:"images/computation/perspective/perspective_profile.gif", tags:["Computer Vision","Computer Graphics"],
+    id:"perspective-rectifier", cat:"Computation", title:"Perspective Rectifier", year:"2026",
+    image:"images/computation/perspective/perspective_profile.gif", fit:"contain",
+    tags:["Computer Vision","Computer Graphics"],
     sub:"Recovering true geometry from a photograph taken at an angle.",
     meta:{Role:"Design + build",Context:"Carnegie Mellon",Status:"Case study in progress"},
     blocks:[]
   },
   {
-    id:"robotic-drawing-25d", cat:"Computation", title:"2.5D Robotic Drawing", year:"2025", wip:true,
-    image:"", tags:["Robotics","Fabrication","Computer Graphics"],
+    id:"robotic-drawing-25d", cat:"Computation", title:"2.5D Robotic Drawing", year:"2024",
+    image:"images/computation/2.5D/2.5D_profile.gif", tags:["Robotics","Fabrication","Computer Graphics"],
     sub:"Drawing on a surface that is not flat.",
     meta:{Role:"Design + build",Context:"Carnegie Mellon",Status:"Case study in progress"},
     blocks:[]
@@ -438,7 +442,7 @@ const PROJECTS = [
   /* ---------- ARCHITECTURE ---------- */
   {
     id:"innovation-park", cat:"Architecture", title:"Future-Mobility Innovation Park", year:"2025",
-    image:"images/examples/innovation-park.jpg", tags:["Urban","Public"],
+    image:"images/architecture/future/future_profile.png", tags:["Urban","Public"],
     sub:"A research campus where the connecting bridge is also the vehicle test track.",
     meta:{Role:"Individual project",Site:"Guangyang Island, Chongqing",Program:"Research campus",Completed:"Dec 2025"},
     blocks:[
@@ -511,7 +515,7 @@ const PROJECTS = [
   },
   {
     id:"all-about-bamboo", cat:"Architecture", title:"All About Bamboo", year:"2024",
-    image:"images/examples/bamboo.jpg", tags:["Design-Build","Sustainability","Public"],
+    image:"images/architecture/bamboo/bamboo_profile.jpeg", tags:["Design-Build","Sustainability","Public"],
     sub:"A carnival pavilion taken apart and rebuilt as a neighborhood greenhouse.",
     meta:{Role:"Design & documentation, build lead, photographer",Organizer:"NOMAS",Advisor:"Vicky Achnani",Duration:"Sep 2022 — Jun 2024"},
     blocks:[
@@ -551,7 +555,7 @@ const numOf=p=>{const l=PROJECTS.filter(x=>x.cat===p.cat);return (p.cat==="Compu
 function cardsHTML(list){
   return `<div class="grid">${list.map(p=>`
     <a class="card" href="#/work/${p.id}" data-cur="view">
-      <span class="shot"><img src="${p.src}" alt="${esc(p.title)}" loading="lazy"></span>
+      <span class="shot${p.fit==="contain"?" fit-contain":""}"><img src="${p.src}" alt="${esc(p.title)}" loading="lazy"></span>
       <span class="meta-line">${numOf(p)} · ${esc(p.year)}${p.wip?' · <span class="wip">In progress</span>':''}</span>
       <span class="pills">${p.tags.slice(0,3).map(t=>`<span class="pill">${esc(t)}</span>`).join("")}</span>
       <h3>${esc(p.title)}</h3>
@@ -583,6 +587,7 @@ function viewHome(){
         <span class="count mono">${comp.length} projects · robotics, vision, automation</span>
       </div>
       ${cardsHTML(comp.slice(0,4))}
+      <p style="margin-top:26px"><a href="#/work/cat/Computation" class="mono" data-cur="link" style="color:var(--mint-deep)">All ${comp.length} computation projects →</a></p>
     </section>
 
     <section class="sec" style="padding-top:clamp(34px,4.4vw,58px)">
@@ -591,7 +596,7 @@ function viewHome(){
         <span class="count mono">${arch.length} projects · 2022—2025</span>
       </div>
       ${cardsHTML(arch.slice(0,4))}
-      <p style="margin-top:26px"><a href="#/work" class="mono" data-cur="link" style="color:var(--mint-deep)">All ${PROJECTS.length} projects →</a></p>
+      <p style="margin-top:26px"><a href="#/work/cat/Architecture" class="mono" data-cur="link" style="color:var(--mint-deep)">All ${arch.length} architecture projects →</a></p>
     </section>
 
     <section class="sec">
@@ -644,7 +649,7 @@ function viewProject(id){
       <h1>${esc(p.title)}</h1>
       <p class="sub">${esc(p.sub)}</p>
     </header>
-    <figure class="p-hero"><img src="${p.src}" alt="${esc(p.title)}"></figure>
+    <figure class="p-hero${p.fit==="contain"?" fit-contain":""}"><img src="${p.src}" alt="${esc(p.title)}"></figure>
     <div class="meta">${Object.entries(p.meta).map(([k,v])=>`<div><span class="k">${esc(k)}</span><span class="v">${esc(v)}</span></div>`).join("")}</div>
     <div class="p-body">
       ${p.blocks.length?p.blocks.map(b=>`
@@ -698,7 +703,10 @@ function viewAbout(){
 function route(){
   const parts=location.hash.replace(/^#\/?/,"").split("/").filter(Boolean);
   let html, current="";
-  if(parts[0]==="work" && parts[1]){ html=viewProject(parts[1]); current="work"; }
+  if(parts[0]==="work" && parts[1]==="cat" && parts[2]){
+    fCat=decodeURIComponent(parts[2]); fTag="All";
+    html=viewWork(); current="work";
+  }
   else if(parts[0]==="work"){ html=viewWork(); current="work"; }
   else if(parts[0]==="about"){ html=viewAbout(); current="about"; }
   else { html=viewHome(); }
