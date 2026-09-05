@@ -147,8 +147,8 @@ ul{padding:0;list-style:none}
 .card h3::after{content:"";width:6px;height:6px;background:var(--mint);border-radius:1px;flex:none;opacity:0;transform:translateX(-5px);transition:all .3s cubic-bezier(.2,.7,.2,1)}
 .card:hover h3::after{opacity:1;transform:none}
 .card p{font-size:var(--fs-small);color:var(--ink-2);margin:0;line-height:1.45}
-/* fit:"contain" on a project — show the whole image instead of cropping to fill */
-.card .shot.fit-contain img,.p-hero.fit-contain img{object-fit:contain;background:var(--paper-2)}
+.card .shot.fit-contain,.p-hero.fit-contain{background:var(--paper)}
+.card .shot.fit-contain img,.p-hero.fit-contain img{object-fit:contain;background:var(--paper)}
 .card:hover .shot.fit-contain img{transform:scale(1.02)}
 @media (max-width:1180px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:820px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -442,7 +442,7 @@ const PROJECTS = [
   /* ---------- ARCHITECTURE ---------- */
   {
     id:"innovation-park", cat:"Architecture", title:"Future-Mobility Innovation Park", year:"2025",
-    image:"images/architecture/future/future_profile.png", tags:["Urban","Public"],
+    image:"images/architecture/future/future_profile_2.jpg", tags:["Urban","Public"],
     sub:"A research campus where the connecting bridge is also the vehicle test track.",
     meta:{Role:"Individual project",Site:"Guangyang Island, Chongqing",Program:"Research campus",Completed:"Dec 2025"},
     blocks:[
@@ -456,7 +456,7 @@ const PROJECTS = [
   },
   {
     id:"boston-library", cat:"Architecture", title:"Boston Public Library", year:"2024",
-    image:"images/examples/boston-library.jpg", tags:["Public","Structures","Sustainability"],
+    image:"images/architecture/library/library_profile.jpg", tags:["Public","Structures","Sustainability"],
     sub:"A mass timber library optimized to a shallower beam, then daylit through the result.",
     meta:{Role:"Individual project",Instructors:"Erica Cochran, Jeremy Ficca, Juney Lee",Site:"Upham's Corner, Boston",Completed:"May 2024"},
     blocks:[
@@ -470,7 +470,7 @@ const PROJECTS = [
   },
   {
     id:"fire-station", cat:"Architecture", title:"Uptown Fire Station", year:"2024",
-    image:"images/examples/fire-station.jpg", images:["images/examples/fire-station-bay.jpg"],
+    image:"images/architecture/firestation/profile.jpg", images:["images/examples/fire-station-bay.jpg"],
     tags:["Public","Sustainability"],
     sub:"A fire station designed to be a civic space rather than a closed door on the street.",
     meta:{Role:"With Andrew Wang",Instructors:"Kristina Fisher, Gerard Damiani",Consultants:"Juney Lee, James Dudt, Studio NYL",Site:"Uptown, Pittsburgh"},
@@ -485,7 +485,7 @@ const PROJECTS = [
   },
   {
     id:"delta-visitor", cat:"Architecture", title:"Mississippi River Delta Visitor Center", year:"2025",
-    image:"images/examples/delta-visitor.jpg", images:["images/examples/delta-visitor-2.jpg"],
+    image:"images/architecture/mississippi/profile_2.jpg", images:["images/examples/delta-visitor-2.jpg"],
     tags:["Urban","Public","Sustainability"],
     sub:"Structures that trap sediment, so the delta rebuilds the ground they stand on.",
     meta:{Role:"With Andrew Wang",Instructor:"Heather Bizon",Site:"Mississippi River Delta, Louisiana",Completed:"May 2025"},
@@ -500,7 +500,7 @@ const PROJECTS = [
   },
   {
     id:"pittsburgh-necklace", cat:"Architecture", title:"Pittsburgh Necklace", year:"2023",
-    image:"images/examples/pittsburgh-necklace.jpg", images:["images/examples/pittsburgh-necklace-2.jpg"],
+    image:"images/architecture/pitt/profile_3.jpg", images:["images/examples/pittsburgh-necklace-2.jpg"],
     tags:["Urban","Public"],
     sub:"Three hybrid sites strung across Pittsburgh, each pairing housing with public event space.",
     meta:{Role:"With Andrew Wang",Instructor:"Vicky Achnani",Site:"Pittsburgh, PA",Completed:"Dec 2023"},
