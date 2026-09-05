@@ -707,6 +707,7 @@ function route(){
     fCat=decodeURIComponent(parts[2]); fTag="All";
     html=viewWork(); current="work";
   }
+  else if(parts[0]==="work" && parts[1]){ html=viewProject(parts[1]); current="work"; }   // ← this was missing
   else if(parts[0]==="work"){ html=viewWork(); current="work"; }
   else if(parts[0]==="about"){ html=viewAbout(); current="about"; }
   else { html=viewHome(); }
