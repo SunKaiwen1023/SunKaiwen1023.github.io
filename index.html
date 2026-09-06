@@ -172,7 +172,7 @@ ul{padding:0;list-style:none}
 .col h3{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);font-weight:500;margin-bottom:12px}
 .col li{padding:7px 0;border-bottom:1px solid var(--rule);font-size:var(--fs-small)}
 .col li:last-child{border-bottom:0}
-.col li em{font-style:normal;color:var(--ink-3);display:block;font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.07em;margin-top:2px}
+.col li em{font-style:normal;color:var(--ink-3);display:block;font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.07em;margin-top:2px;white-space:pre-line}
 .lede{font-size:clamp(1.05rem,1.8vw,1.4rem);line-height:1.42;letter-spacing:-.015em;max-width:34ch;font-weight:400}
 .body-copy{max-width:64ch;color:var(--ink-2)}
 .body-copy p+p{margin-top:1em}
@@ -332,18 +332,19 @@ const PROFILE = {
     "I teach as well: I have been a TA in the CMU School of Architecture since 2022, across digital media, structures, and generative modeling. Explaining a script to someone who has never opened Grasshopper is still the fastest way I know to find out whether I actually understand it."
   ],
   education:[
-    {t:"M.S. Computational Design (Integrated Master)",m:"Carnegie Mellon University · Aug 2025 — May 2027"},
-    {t:"B.Arch, NAAB-accredited 5-year program",m:"Carnegie Mellon University · Aug 2021 — May 2026"},
-    {t:"GPA 3.88 · Dean's List, 8 semesters",m:"Graduate Merit Scholarship recipient"},
-    {t:"Selected coursework",m:"Computer Vision · Applied Machine Learning · Internet of Things · Robotics with Sensing · Computational Structure Design"}
+    {t:"Master of Science in Computational Design",m:"Carnegie Mellon University\nAug 2025 — May 2027"},
+    {t:"Bachelor of Architecture",m:"Carnegie Mellon University\nAug 2021 — May 2026\nMajor: Architectural and Building Sciences/Technology, NAAB-accredited 5-year program\nMinor: Intelligent Environment"},
+    {t:"Graduate Merit Scholarship recipient",m:"GPA 3.88 · Dean's List, 8 semesters"},
+    {t:"Selected coursework",m:"Computer Vision · Computer Graphics · Applied Machine Learning · Creative Technology · Internet of Things · Robotics with Sensing · Computational Structure Design"}
   ],
   experience:[
-    {t:"Computational Design Intern",m:"HKS, Inc. LINE · Washington DC · 2026 Summer"},
-    {t:"CodeLab Web Designer",m:"Computational Design Lab, CMU · 2025 Aug - Present"},
-    {t:"Architectural Intern",m:"HKS, Inc. · Richmond & Dallas · 2025 Summer"},
-    {t:"Architectural Intern",m:"Studio Zhu-Pei · Beijing · 2024 Summer"},
-    {t:"Architectural Intern",m:"IPPR International Engineering Co. · Beijing · 2023 Summer"},
-    {t:"Teaching Assistant",m:"CMU School of Architecture · 2022 Aug — Present"}
+    {t:"Computational Design Intern",m:"HKS, Inc. · LINE (Laboratory of Intensive Exploration) · Washington D.C. · 2026 Summer"},
+    {t:"CodeLab Web Designer",m:"Carnegie Mellon University · Computational Design Lab · Pittsburgh, PA · 2025 Aug - Present"},
+    {t:"Teaching Assistant",m:"Carnegie Mellon University · School of Architecture · Pittsburgh, PA · 2022 Aug — Present"},
+    {t:"Computational Design Intern",m:"HKS, Inc. · LINE (Laboratory of Intensive Exploration) · Dallas, TX · 2025 Aug"},
+    {t:"Architectural Intern",m:"HKS, Inc. · Healthcare Design · Richmond, VA · 2025 Summer"},
+    {t:"Architectural Intern",m:"Studio Zhu-Pei · Beijing, China · 2024 Summer"},
+    {t:"Architectural Intern",m:"IPPR International Engineering Co. · Beijing, China · 2023 Summer"},
   ],
   skills:[
     {t:"Programming & AI",m:"Python, C#, C++, ROS, MediaPipe, Intel RealSense, OpenCV, YOLOv8, LLM APIs"},
@@ -352,9 +353,9 @@ const PROFILE = {
   ],
   other:[
     {t:"Living Future Accredited (LFA)",m:"International Living Future Institute · July 2026"},
-    {t:"Student Representative",m:"Graduate Student Assembly Committee (GSAC) · 2025—26"},
-    {t:"Event Assistant",m:"Playing Models Symposium · 2025"},
-    {t:"Participant, DigitalFUTURES 2025",m:"Workshop — Collaborative AI: Customized Tool Making for Computational Design with LLMs"}
+    {t:"Student Representative",m:"Graduate Student Assembly Committee (GSAC) · Academic Year 25—26"},
+    {t:"Event Assistant",m:"Playing Models Symposium · August 2025"},
+    {t:"Participant, DigitalFUTURES 2025",m:"Workshop — Collaborative AI: Customized Tool Making for Computational Design with LLMs · June 2025"},
   ]
 };
 
@@ -754,8 +755,8 @@ function viewAbout(){
           <h3>Education</h3><ul>${PROFILE.education.map(e=>`<li>${esc(e.t)}<em>${esc(e.m)}</em></li>`).join("")}</ul>
           <h3 style="margin-top:24px">Contact</h3>
           <ul>
-            <li><a href="mailto:${esc(PROFILE.email)}" data-cur="link">${esc(PROFILE.email)}</a></li>
-            <li><a href="mailto:${esc(PROFILE.emailSchool)}" data-cur="link">${esc(PROFILE.emailSchool)}</a><em>School — expires after graduation</em></li>
+            <li><a href="mailto:${esc(PROFILE.email)}" data-cur="link">${esc(PROFILE.email)}</a><em>Personal · primary email </em></li>
+            <li><a href="mailto:${esc(PROFILE.emailSchool)}" data-cur="link">${esc(PROFILE.emailSchool)}</a><em>School · expires after graduation</em></li>
           </ul>
         </div>
         <div class="col">
