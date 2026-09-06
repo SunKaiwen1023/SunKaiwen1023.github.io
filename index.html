@@ -290,17 +290,17 @@ body.cur-hidden .cur,body.cur-hidden .cur-dot{opacity:0}
       </div>
       <div>
         <h3>Elsewhere</h3>
-        <a href="https://www.linkedin.com/in/kaiwen-sun/" data-cur="link">LinkedIn ↗</a>
-        <a href="https://github.com/SunKaiwen1023" data-cur="link">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/kaiwen-sun/" target="_blank" rel="noopener" data-cur="link">LinkedIn ↗</a>
+        <a href="https://github.com/SunKaiwen1023" target="_blank" rel="noopener" data-cur="link">GitHub ↗</a>
       </div>
       <div>
         <h3>Documents</h3>
-        <a href="https://drive.google.com/file/d/1rukTy9emOoNi7LMfIIsTwQJo8BFKRaoE/view?usp=drive_link" data-cur="link">Résumé (PDF) ↗</a>
-        <a href="https://drive.google.com/file/d/143X8VSQZ3BRgS9cHwxr5fz24aBUYBQbb/view?usp=drive_link" data-cur="link">Design Portfolio (PDF) ↗</a>
+        <a href="https://drive.google.com/file/d/1rukTy9emOoNi7LMfIIsTwQJo8BFKRaoE/view?usp=drive_link" target="_blank" rel="noopener" data-cur="link">Résumé (PDF) ↗</a>
+        <a href="https://drive.google.com/file/d/143X8VSQZ3BRgS9cHwxr5fz24aBUYBQbb/view?usp=drive_link" target="_blank" rel="noopener" data-cur="link">Design Portfolio (PDF) ↗</a>
       </div>
     </div>
     <div class="note">
-      <b>Before you ship:</b> fill in the LinkedIn / GitHub / résumé / portfolio links above and add <code>resume.pdf</code> to the repo. Six computation projects still need images — see the README checklist. Then delete this note.
+      <b>Still to do:</b> hero images for Stereo-Vision Depth Mapping and Perspective Rectifier, a write-up for Perspective Rectifier, and the Section Automation Plugin entry (commented out in <code>PROJECTS</code>). Then delete this note.
     </div>
     <div class="foot-base mono">
       <span>© <span id="yr">2026</span> Kaiwen Sun</span>
@@ -325,28 +325,36 @@ const PROFILE = {
   focus:"Robotics, computer vision, and design automation, plus the architecture that gives them something to build.",
   email:"sunkaiwen1023@gmail.com",
   emailSchool:"kaiwens@andrew.cmu.edu",
-  cv:"#",
+  cv:"https://drive.google.com/file/d/1rukTy9emOoNi7LMfIIsTwQJo8BFKRaoE/view?usp=drive_link",
   bio:[
     "I am a computational designer finishing an integrated M.S. in Computational Design at Carnegie Mellon, where I also completed a five-year B.Arch. My work sits on the seam between design intent and fabrication: Grasshopper tooling that removes a week of drafting, vision pipelines that let a machine recognize what it is looking at, and robot workflows that turn a form-found surface into milled parts that fit dry.",
     "That seam is where I am most useful. Five years of architecture taught me to hold a project's intent, why the span is forty feet, why the entrance faces that way, and computation is how I keep that intent intact through the parts of the process that usually flatten it. At HKS I built a Rhino plugin that generated an entire section documentation set, and maintained the computational workflow behind a stadium's exterior model through the 50% DD milestone.",
     "I teach as well: I have been a TA in the CMU School of Architecture since 2022, across digital media, structures, and generative modeling. Explaining a script to someone who has never opened Grasshopper is still the fastest way I know to find out whether I actually understand it."
   ],
   education:[
-    {t:"M.S. Computational Design (Integrated Master)",m:"Carnegie Mellon University· Aug 2025 — May 2027"},
+    {t:"M.S. Computational Design (Integrated Master)",m:"Carnegie Mellon University · Aug 2025 — May 2027"},
     {t:"B.Arch, NAAB-accredited 5-year program",m:"Carnegie Mellon University · Aug 2021 — May 2026"},
-    // {t:"GPA 3.87 · Dean's List, 7 semesters",m:"Graduate Merit Scholarship recipient"}
+    {t:"GPA 3.88 · Dean's List, 8 semesters",m:"Graduate Merit Scholarship recipient"},
+    {t:"Selected coursework",m:"Computer Vision · Applied Machine Learning · Internet of Things · Robotics with Sensing · Computational Structure Design"}
   ],
   experience:[
     {t:"Computational Design Intern",m:"HKS, Inc. LINE · Washington DC · 2026 Summer"},
     {t:"CodeLab Web Designer",m:"Computational Design Lab, CMU · 2025 Aug - Present"},
     {t:"Architectural Intern",m:"HKS, Inc. · Richmond & Dallas · 2025 Summer"},
     {t:"Architectural Intern",m:"Studio Zhu-Pei · Beijing · 2024 Summer"},
+    {t:"Architectural Intern",m:"IPPR International Engineering Co. · Beijing · 2023 Summer"},
     {t:"Teaching Assistant",m:"CMU School of Architecture · 2022 Aug — Present"}
   ],
   skills:[
     {t:"Programming & AI",m:"Python, C#, C++, ROS, MediaPipe, Intel RealSense, OpenCV, YOLOv8, LLM APIs"},
     {t:"Design & BIM",m:"Rhino 8, Grasshopper, Revit, AutoCAD, Figma, Illustrator, InDesign, Photoshop"},
     {t:"Fabrication & Analysis",m:"Robot Studio, robotic milling, Karamba 3D, RhinoVAULT, V-Ray, Enscape, FEA"}
+  ],
+  other:[
+    {t:"Living Future Accredited (LFA)",m:"International Living Future Institute · July 2026"},
+    {t:"Student Representative",m:"Graduate Student Assembly Committee (GSAC) · 2025—26"},
+    {t:"Event Assistant",m:"Playing Models Symposium · 2025"},
+    {t:"Participant, DigitalFUTURES 2025",m:"Workshop — Collaborative AI: Customized Tool Making for Computational Design with LLMs"}
   ]
 };
 
@@ -358,20 +366,20 @@ const PROFILE = {
    ============================================================ */
 const PROJECTS = [
   /* ---------- COMPUTATION ---------- */
-  // {
-  //   id:"section-automation", cat:"Computation", title:"Section Automation Plugin", year:"2026", wip:true,
-  //   image:"", tags:["Automation","Tooling"],
-  //   sub:"A Rhino 8 / Grasshopper plugin that automates section drawing and sheet set generation.",
-  //   meta:{Role:"Sole developer",Context:"HKS LINE research division",Stack:"C#, Python, RhinoCommon",Duration:"May — Aug 2026"},
-  //   blocks:[
-  //     {tag:"The problem",h:"Section documentation is hours of identical, error-prone drafting",
-  //      p:"Cutting sections, naming views, laying them out to scale, dropping in title blocks and key plans — every project repeats the same sequence by hand, and every hand-made sheet set drifts out of sync the moment the model changes."},
-  //     {tag:"What I built",h:"Clipping planes, named views, scaled layouts, title blocks and key plans, generated",
-  //      p:"The plugin walks the model and produces the whole documentation set programmatically. I engineered it as a modular, unit-aware architecture so it survives projects in imperial and metric without a rewrite, and resolved a set of RhinoCommon API issues around view generation and PDF export along the way."},
-  //     {tag:"Outcome",h:"Shipped into the LINE workflow and replacing manual drafting",
-  //      p:"Built independently over a summer internship and handed off to the team as a working tool rather than a prototype."}
-  //   ]
-  // },
+  {
+    id:"section-automation", cat:"Computation", title:"Section Automation Plugin", year:"2026", wip:true,
+    image:"", tags:["Automation","Tooling"],
+    sub:"A Rhino 8 / Grasshopper plugin that automates section drawing and sheet set generation.",
+    meta:{Role:"Sole developer",Context:"HKS LINE research division",Stack:"C#, Python, RhinoCommon",Duration:"May — Aug 2026"},
+    blocks:[
+      {tag:"The problem",h:"Section documentation is hours of identical, error-prone drafting",
+       p:"Cutting sections, naming views, laying them out to scale, dropping in title blocks and key plans — every project repeats the same sequence by hand, and every hand-made sheet set drifts out of sync the moment the model changes."},
+      {tag:"What I built",h:"Clipping planes, named views, scaled layouts, title blocks and key plans, generated",
+       p:"The plugin walks the model and produces the whole documentation set programmatically. I engineered it as a modular, unit-aware architecture so it survives projects in imperial and metric without a rewrite, and resolved a set of RhinoCommon API issues around view generation and PDF export along the way."},
+      {tag:"Outcome",h:"Shipped into the LINE workflow and replacing manual drafting",
+       p:"Built independently over a summer internship and handed off to the team as a working tool rather than a prototype."}
+    ]
+  },
   {
     id:"gesture-to-robot", cat:"Computation", title:"Gesture-to-Robot Collaborative Drawing", year:"2026",
     image:"images/computation/air/air_profile.gif", tags:["Robotics","Computer Vision","AI/ML"],
@@ -389,39 +397,60 @@ const PROJECTS = [
   {
     id:"material-recognition", cat:"Computation", title:"Real-time Material Recognition System", year:"2025",
     image:"images/computation/CV/CV_Profile.gif", tags:["Computer Vision","AI/ML"],
-    sub:"A hybrid vision pipeline that identifies recycled material as it moves past the camera.",
-    meta:{Role:"Design + build",Context:"Computer Vision, CMU",Stack:"OpenCV, YOLOv8, Python",Duration:"Oct — Dec 2025"},
+    sub:"A hybrid vision pipeline that classifies recycling on a belt moving at 2 m/s.",
+    meta:{Role:"Vision pipeline",Team:"With Shiyu Chen, Carla Flores Trávez, Quincy Wang",Instructor:"Prof. Kenji Shimada",Context:"Computer Vision, CMU",Stack:"Python, OpenCV, YOLOv8-seg",Completed:"Dec 2025"},
     blocks:[
-      {tag:"Goal",h:"Sorting recycled material starts with knowing what it is",
-       p:"Reuse in construction stalls at identification: someone has to look at a pile of salvaged material and classify it before any of it can be specified. The system automates that first step."},
-      {tag:"Method",h:"Classical CV and a trained detector, working together",
-       p:"A hybrid pipeline pairs OpenCV feature extraction with a YOLOv8 detector, so geometric cues the network is weak on and material cues the classical stage is weak on cover each other."},
-      {tag:"Status",h:"Working prototype",
-       p:"Runs in real time on a single camera feed. The next step is a larger labeled set of construction-waste categories."}
+      {tag:"The challenge",h:"Speed and accuracy pull against each other on a moving belt",
+       p:"Conventional AI systems create processing bottlenecks in high-speed industrial settings. A recycling facility's conveyor runs at 2 m/s, and putting a full segmentation network on every frame forces a trade between throughput and classification accuracy — you get one or the other."},
+      {tag:"The approach",h:"You don't need deep learning everywhere — you need it where it matters",
+       p:"The pipeline splits in two after preprocessing and calibration. A classical branch handles what classical computer vision is good at: thresholding, morphology and contour analysis for rapid foreground segmentation, plus optical-flow slip detection for belt-health diagnostics. YOLOv8-seg then runs only on the regions of interest that branch identifies, rather than on whole frames — cutting the computational workload by over 80%."},
+      {tag:"Result",h:"60+ FPS at over 95% classification accuracy",
+       p:"The system holds real-time frame rates while reporting live performance metrics, and the hybrid outperforms either method used alone. Neither branch is doing the other's job."}
     ]
   },
   {
-    id:"compression-bench", cat:"Computation", title:"Compression-Only Funicular Bench", year:"2025",
+    id:"compression-bench", cat:"Computation", title:"Compression-Only Funicular Bench", year:"2024",
     image:"images/computation/bench/bench_profile.gif",
     images:["images/examples/bench-form.jpg","images/examples/bench-robot.jpg","images/examples/bench-matrix.jpg","images/examples/bench-leg.jpg"],
     tags:["Robotics","Fabrication","Structures"],
     sub:"A robotically milled bench that holds itself up with compression alone — no glue, no fasteners.",
-    meta:{Role:"Form finding, toolpaths, fabrication",Team:"With Darin Kim, Eric Yu, Hazel Froling",Context:"Advanced Structure Design × Intro to Architectural Robotics",Duration:"Oct 2024 — Mar 2025"},
+    meta:{Role:"Form finding, toolpaths, fabrication",Team:"With Hazel Froling, Darin Kim, Eric Yu",Instructors:"Joshua Bard, Juney Lee",Context:"Architectural Robotics × Advanced Structural Design",Completed:"Dec 2024"},
     blocks:[
-      {tag:"Structure",h:"Form found in RhinoVAULT so every part is in compression",
+      {tag:"Structure",h:"Form found in RhinoVAULT so every part stays in compression",
        p:"The bench's geometry comes out of funicular form finding: shaped so the load path stays in compression throughout, which is what allows a dry-fit assembly to stand without adhesives or fasteners. Karamba finite element analysis and panelization confirmed the surface before anything was cut."},
-      {tag:"Fabrication",h:"Custom Grasshopper toolpaths, one per unique piece",
-       p:"Every component has a different geometry, so every component needs its own robotic milling toolpath. We wrote the toolpath generation in Grasshopper against the specific geometry of each block — the part of the project with the least room for approximation, since the pieces only hold if they meet exactly."},
-      {tag:"Assembly",h:"3D-printed study models, then full-scale legs in wood",
-       p:"A printed piece matrix let us test the dry-fit logic at small scale before committing to milled timber. The full-scale leg assembled as designed."}
+      {tag:"Path planning",h:"Custom Grasshopper toolpaths, one per unique piece",
+       p:"Every component has a different geometry, so every component needs its own milling toolpath. We wrote custom robotic kinematics in Grasshopper to drive an ABB 4400 industrial arm against the specific geometry of each block — the part of the project with the least room for approximation, since the pieces only hold if they meet exactly."},
+      {tag:"Digital to physical",h:"3D-printed study models, then full-scale legs in wood",
+       p:"A printed piece matrix let us test the dry-fit logic at small scale before committing to milled timber. The full-scale leg assembled as designed, which is the whole argument: precision in the toolpath is what buys you a structure that needs no glue."}
     ]
   },
   {
     id:"tangible-telepresence", cat:"Computation", title:"Tangible Telepresence", year:"2025",
-    image:"images/computation/tangible/tangible.gif", tags:["Physical Computing","Interaction"],
-    sub:"Presence at a distance, made physical.",
-    meta:{Role:"Design + build",Context:"Carnegie Mellon",Status:"Case study in progress"},
-    blocks:[]
+    image:"images/computation/tangible/tangible.gif", tags:["Physical Computing","Interaction","Internet of Things"],
+    sub:"Lavender Haze — a squeeze-sensitive bedside object that lets two people hold hands across a distance.",
+    meta:{Role:"Design + build",Team:"With Summer Chao",Context:"Internet of Things, CMU",Stack:"Particle Photon 2, FSR 406, NeoPixel WS2812B, polyimide heater",Completed:"Dec 2025"},
+    blocks:[
+      {tag:"Premise",h:"Distance flattens touch into text",
+       p:"A soft object for a bedside table, made for couples living apart. Hold it and it glows. The point was to find a gesture that carries affection without asking either person to compose a message about it."},
+      {tag:"Hardware",h:"A force sensor under wool, a ring of light, and a heater that melts wax",
+       p:"A Force Sensitive Resistor (FSR 406) sits beneath a wool cover and reads squeeze pressure. A 16-LED NeoPixel ring (WS2812B) is the visual output. A polyimide flexible heater plate warms a lavender wax core, so the object can answer in scent and heat rather than only in light. The Particle Photon 2 was chosen for cloud connectivity fast enough for a real-time hand-holding simulation."},
+      {tag:"Logic",h:"One person is presence; two at once is connection",
+       p:"Boolean logic separates the two states. A single user's touch produces ambient purple light — presence. When both partners hold their object at the same time, the light brightens and the heater releases warmth and lavender scent — connection. The distinction is the whole interaction design: being thought of, versus being met."}
+    ]
+  },
+  {
+    id:"stereo-vision", cat:"Computation", title:"Stereo-Vision Depth Mapping", year:"2025",
+    image:"images/computation/stereo/profile_2.gif", tags:["Computer Vision","Computer Graphics"],
+    sub:"Dense 3D point clouds reconstructed from ordinary pairs of photographs.",
+    meta:{Role:"Individual project",Context:"Computer Vision, CMU",Stack:"Python, OpenCV SGBM, CloudCompare",Completed:"Nov 2025"},
+    blocks:[
+      {tag:"Goal",h:"Two photographs, one surface",
+       p:"A Python pipeline that builds dense 3D point clouds from pairs of unconstrained 2D images — photographs taken without a calibrated rig, with the noise and variable lighting that implies."},
+      {tag:"Method",h:"Semi-Global Block Matching, with a calibration tool to tune it",
+       p:"SGBM produces the disparity map, paired with a custom interactive calibration tool for tuning parameters against real-world conditions. Disparity is converted to spatial coordinates through manual inverse-depth projection, exported as high-resolution .ply files, and analysed geometrically in CloudCompare."},
+      {tag:"The hard part",h:"Low-texture regions are where stereo quietly fails",
+       p:"A blank wall gives the matcher nothing to match, and the result is confident nonsense. I engineered a filtering mechanism specifically for minimal-texture areas, which is what carries the pipeline from raw pixel data to a 3D surface mesh you can actually measure."}
+    ]
   },
   {
     id:"perspective-rectifier", cat:"Computation", title:"Perspective Rectifier", year:"2026",
@@ -434,10 +463,30 @@ const PROJECTS = [
   {
     id:"robotic-drawing-25d", cat:"Computation", title:"2.5D Robotic Drawing", year:"2024",
     image:"images/computation/2.5D/2.5D_profile.gif", tags:["Robotics","Fabrication","Computer Graphics"],
-    sub:"Drawing on a surface that is not flat.",
-    meta:{Role:"Design + build",Context:"Carnegie Mellon",Status:"Case study in progress"},
-    blocks:[]
+    sub:"A robot that draws on surfaces that are not flat.",
+    meta:{Role:"Design + build",Team:"With Julia Kasper, Ternilla Robinson",Instructor:"Prof. Joshua Bard",Context:"Architectural Robotics, CMU",Stack:"ABB IRB 120, RobotStudio, Robot Components for Grasshopper",Completed:"Oct 2024"},
+    blocks:[
+      {tag:"Problem",h:"Drawing machines assume the paper is flat",
+       p:"The system generates drawing trajectories autonomously on non-standard, non-planar physical geometry — a mesh with stochastic deformation rather than a sheet. Every assumption a plotter makes about a constant working plane stops being true."},
+      {tag:"Method",h:"Scan the surface, project the contours, plan for depth",
+       p:"Point-cloud scanning captures the deformed mesh, and topographical contour information is projected onto that surface to generate the path. Motion planning then handles variable depths and complex fold patterns so the end effector keeps contact through high-curvature regions instead of skipping or digging in."},
+      {tag:"Calibration",h:"Closing the gap between the simulation and the arm",
+       p:"Tool calibration and work object definition resolve the digital-to-physical discrepancies that otherwise accumulate into a visibly wrong drawing. Paths are generated as RAPID code and simulated in RobotStudio before running on the ABB IRB 120, synchronising digital simulation with real-world execution."}
+    ]
   },
+  // Not currently shown — uncomment to add it to the site.
+  // {
+  //   id:"eigenfaces-pca", cat:"Computation", title:"Finding Eigenfaces Using PCA", year:"2025",
+  //   image:"", tags:["Computer Vision","AI/ML"],
+  //   sub:"Principal component analysis applied to facial recognition, at 81.3% accuracy.",
+  //   meta:{Role:"Individual project",Context:"Computer Vision, CMU",Stack:"Python, scikit-learn",Completed:"Dec 2025"},
+  //   blocks:[
+  //     {tag:"Method",h:"Structure extracted from 4,096-dimensional vectors",
+  //      p:"PCA reduces each face image to the components that actually carry identity. By implementing StandardScaler and whitening, I ensured that geometric variance, rather than lighting noise, drove the decomposition."},
+  //     {tag:"Tuning",h:"130 principal components as the optimal threshold",
+  //      p:"RandomizedSearchCV found the point where added components stop buying accuracy, reaching 81.3% and visualising the eigenfaces themselves as the extracted features."}
+  //   ]
+  // },
 
   /* ---------- ARCHITECTURE ---------- */
   {
@@ -452,6 +501,27 @@ const PROJECTS = [
        p:"A central multi-functional bridge connects the three buildings, and doubles as a high-speed testing track. Cars run on it; people gather under and along it. The intersection is formally the most complex thing on the site, and it is deliberately the most public — testing becomes something visitors watch rather than something hidden behind a fence."},
       {tag:"Position",h:"Technology shown, not just developed",
        p:"The layout responds to congestion and safety as design problems, and treats autonomous systems as something the architecture should exhibit. The ambition is a destination, not only a facility."}
+    ]
+  },
+  {
+    id:"laurel-caverns", cat:"Architecture", title:"Laurel Caverns Visitor Center", year:"2026",
+    image:"images/architecture/terralogic/profile_4.jpg",
+    // images:["images/architecture/terralogic/atrium.jpg","images/architecture/terralogic/facade.jpg"],
+    tags:["Public","Structures","Fabrication"],
+    sub:"A visitor center whose geometry and terracotta façade are both derived from how crystals grow.",
+    meta:{Role:"With Andrew Wang",Instructor:"Laura Garofalo",Context:"Terralogic Studio — final B.Arch studio",Site:"Laurel Caverns, Pennsylvania",Completed:"Spring 2026"},
+    blocks:[
+      {tag:"Precedent",h:"Two minerals, two sets of formal rules",
+       p:"I studied sapphire — its molecular structure, crystallization process and trigonal geometry — extracting faceted surfaces, 60-degree intersections, layered subdivisions and directional lattice lines. Andrew studied pyrite: cubic crystallization, geological formation, and twinning, where two crystal parts grow together in fixed mirrored or rotated symmetry. Physical models tested each logic in chipboard, string, plaster and acrylic before either became architecture."},
+
+      {tag:"Site",h:"A building that hands you over to the cavern",
+       p:"The project sits at Laurel Caverns, positioned along the natural water path and existing road network so that access, parking and circulation all frame entry toward the caves. The section is the argument: a continuous vertical sequence runs from the atrium down past a small theatre beneath the gallery and further into the cavern itself, so the architecture works as a transition into a subterranean condition rather than a destination of its own."},
+
+      {tag:"Form",h:"Program mapped, rotated for sun, then opened and stitched by an atrium",
+       p:"Form generation ran as an explicit sequence: major program elements mapped and resized into volumetric masses, rotated to optimize sunlight, views and entry, then carved with strategic openings to bring daylight to key spaces. A central glass atrium finally connects the volumes, carrying circulation and visual continuity across exhibition, auditorium, café, reception, and the office and education spaces consolidated below."},
+
+      {tag:"Façade",h:"Seven panel variations, one gradient, a constructible detail",
+       p:"The terracotta façade abstracts the crystalline precedent into a systematic field of triangulated 2' × 2' panels whose depth varies by about an inch. Seven variations (A–G) generate a controlled gradient from least to most pronounced deformation — enough variation to read as a surface, few enough moulds to actually fabricate. Panels hook onto an aluminum railing and vertical carrier track anchored to a concrete wall with rigid insulation, and their offset depth creates a ventilated cavity behind. A layered glaze of AMACO Sapphire Blue, Botanical Teal Gloss and HF-10 Clear produces the sapphire-like finish, and a 3D-printed prototype verified panel attachment and alignment across multiple units."}
     ]
   },
   {
@@ -695,6 +765,11 @@ function viewAbout(){
       <div class="cols" style="margin-top:clamp(30px,4vw,48px)">
         ${PROFILE.skills.map(s=>`<div class="col"><h3>${esc(s.t)}</h3><p style="font-size:var(--fs-small);color:var(--ink-2);margin:0">${esc(s.m)}</p></div>`).join("")}
       </div>
+      <div class="cols" style="margin-top:clamp(30px,4vw,48px)">
+        <div class="col" style="max-width:64ch"><h3>Accreditation &amp; Service</h3>
+          <ul>${PROFILE.other.map(e=>`<li>${esc(e.t)}<em>${esc(e.m)}</em></li>`).join("")}</ul>
+        </div>
+      </div>
     </section>
   </div>`;
 }
@@ -726,7 +801,7 @@ function route(){
 addEventListener("hashchange",route);
 route();
 document.getElementById("yr").textContent=new Date().getFullYear();
-document.getElementById("cvLink").href=PROFILE.cv;
+const cvA=document.getElementById("cvLink");cvA.href=PROFILE.cv;cvA.target="_blank";cvA.rel="noopener";
 
 /* ============================================================ CURSOR + PREVIEW */
 if(matchMedia("(hover:hover) and (pointer:fine)").matches){
