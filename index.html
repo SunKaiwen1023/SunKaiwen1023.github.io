@@ -176,6 +176,14 @@ ul{padding:0;list-style:none}
 .lede{font-size:clamp(1.05rem,1.8vw,1.4rem);line-height:1.42;letter-spacing:-.015em;max-width:34ch;font-weight:400}
 .body-copy{max-width:64ch;color:var(--ink-2)}
 .body-copy p+p{margin-top:1em}
+.cols.about-cols{grid-template-columns:minmax(0,0.85fr) minmax(0,1.4fr) minmax(0,1.4fr)}
+.portrait{margin:0;max-width:240px}
+.portrait .frame{display:block;border:1px solid var(--rule);background:var(--paper-2);overflow:hidden;aspect-ratio:4/5}
+.portrait img{width:100%;height:100%;object-fit:cover}
+.portrait figcaption{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.07em;color:var(--ink-3);margin-top:9px;line-height:1.5}
+@media (max-width:900px){.cols.about-cols{grid-template-columns:minmax(0,1fr)}}
+.cols.home-cols{grid-template-columns:minmax(0,1.3fr) minmax(0,1.2fr) minmax(0,1.1fr)}
+@media (max-width:900px){.cols.home-cols{grid-template-columns:minmax(0,1fr)}}
 
 /* ============================================================ PROJECT PAGE */
 .back{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-2);padding-block:clamp(22px,3.4vw,36px) 0}
@@ -184,6 +192,15 @@ ul{padding:0;list-style:none}
 .p-head h1{font-size:var(--fs-h1);font-weight:500;letter-spacing:-.032em;line-height:1.03;max-width:18ch;text-wrap:balance}
 .p-head .sub{margin-top:14px;color:var(--ink-2);max-width:54ch}
 .p-hero{border:1px solid var(--rule);aspect-ratio:16/9;overflow:hidden;background:var(--paper-2)}
+.p-top{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);
+  gap:clamp(24px,3.5vw,56px);align-items:center;
+  padding-block:clamp(20px,2.6vw,30px) 0;
+}
+.p-top .p-head{padding-block:0}
+@media (max-width:900px){
+  .p-top{grid-template-columns:minmax(0,1fr);align-items:start;gap:clamp(18px,2.4vw,26px)}
+}
 .p-hero img{width:100%;height:100%;object-fit:cover}
 .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:var(--gap);border-top:1px solid var(--ink);margin-top:clamp(26px,3.6vw,42px);padding-top:20px}
 .meta .k{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);display:block;margin-bottom:6px}
@@ -281,8 +298,7 @@ body.cur-hidden .cur,body.cur-hidden .cur-dot{opacity:0}
 
 <footer class="site-foot">
   <div class="wrap">
-    <p class="foot-cta">Graduating May 2027 — <a href="mailto:sunkaiwen1023@gmail.com" data-cur="link">let's talk&nbsp;→</a></p>
-    <div class="foot-grid" style="margin-top:clamp(26px,4vw,42px)">
+    <div class="foot-grid">
       <div>
         <h3>Contact</h3>
         <a href="mailto:sunkaiwen1023@gmail.com" data-cur="link">sunkaiwen1023@gmail.com</a>
@@ -299,9 +315,9 @@ body.cur-hidden .cur,body.cur-hidden .cur-dot{opacity:0}
         <a href="https://drive.google.com/file/d/143X8VSQZ3BRgS9cHwxr5fz24aBUYBQbb/view?usp=drive_link" target="_blank" rel="noopener" data-cur="link">Design Portfolio (PDF) ↗</a>
       </div>
     </div>
-    <div class="note">
+    <!-- <div class="note">
       <b>Still to do:</b> hero images for Stereo-Vision Depth Mapping and Perspective Rectifier, a write-up for Perspective Rectifier, and the Section Automation Plugin entry (commented out in <code>PROJECTS</code>). Then delete this note.
-    </div>
+    </div> -->
     <div class="foot-base mono">
       <span>© <span id="yr">2026</span> Kaiwen Sun</span>
       <span>Pittsburgh, PA</span>
@@ -326,36 +342,38 @@ const PROFILE = {
   email:"sunkaiwen1023@gmail.com",
   emailSchool:"kaiwens@andrew.cmu.edu",
   cv:"https://drive.google.com/file/d/1rukTy9emOoNi7LMfIIsTwQJo8BFKRaoE/view?usp=drive_link",
+  portrait:"images/general/headshot_3.jpg",
   bio:[
     "I am a computational designer finishing an integrated M.S. in Computational Design at Carnegie Mellon, where I also completed a five-year B.Arch. My work sits on the seam between design intent and fabrication: Grasshopper tooling that removes a week of drafting, vision pipelines that let a machine recognize what it is looking at, and robot workflows that turn a form-found surface into milled parts that fit dry.",
     "That seam is where I am most useful. Five years of architecture taught me to hold a project's intent, why the span is forty feet, why the entrance faces that way, and computation is how I keep that intent intact through the parts of the process that usually flatten it. At HKS I built a Rhino plugin that generated an entire section documentation set, and maintained the computational workflow behind a stadium's exterior model through the 50% DD milestone.",
     "I teach as well: I have been a TA in the CMU School of Architecture since 2022, across digital media, structures, and generative modeling. Explaining a script to someone who has never opened Grasshopper is still the fastest way I know to find out whether I actually understand it."
   ],
   education:[
-    {t:"Master of Science in Computational Design",m:"Carnegie Mellon University\nAug 2025 — May 2027"},
-    {t:"Bachelor of Architecture",m:"Carnegie Mellon University\nAug 2021 — May 2026\nMajor: Architectural and Building Sciences/Technology, NAAB-accredited 5-year program\nMinor: Intelligent Environment"},
-    {t:"Graduate Merit Scholarship recipient",m:"GPA 3.88 · Dean's List, 8 semesters"},
+    {t:"Master of Science in Computational Design · MSCD",m:"Carnegie Mellon University · Aug 2025 — May 2027\nGraduate Merit Scholarship Recipient"},
+    {t:"Bachelor of Architecture · B.Arch · NAAB-accredited 5-year Program",m:"Carnegie Mellon University · Aug 2021 — May 2026\nMajor: Architectural and Building Sciences/Technology\nMinor: Intelligent Environment"},
+    {t:"University Honors · College Honors",m:"B.Arch · GPA 3.88 · Dean's List, 8 semesters"},
     {t:"Selected coursework",m:"Computer Vision · Computer Graphics · Applied Machine Learning · Creative Technology · Internet of Things · Robotics with Sensing · Computational Structure Design"}
   ],
   experience:[
-    {t:"Computational Design Intern",m:"HKS, Inc. · LINE (Laboratory of Intensive Exploration) · Washington D.C. · 2026 Summer"},
-    {t:"CodeLab Web Designer",m:"Carnegie Mellon University · Computational Design Lab · Pittsburgh, PA · 2025 Aug - Present"},
-    {t:"Teaching Assistant",m:"Carnegie Mellon University · School of Architecture · Pittsburgh, PA · 2022 Aug — Present"},
-    {t:"Computational Design Intern",m:"HKS, Inc. · LINE (Laboratory of Intensive Exploration) · Dallas, TX · 2025 Aug"},
-    {t:"Architectural Intern",m:"HKS, Inc. · Healthcare Design · Richmond, VA · 2025 Summer"},
-    {t:"Architectural Intern",m:"Studio Zhu-Pei · Beijing, China · 2024 Summer"},
-    {t:"Architectural Intern",m:"IPPR International Engineering Co. · Beijing, China · 2023 Summer"},
+    {t:"Computational Design Intern",m:"HKS, Inc. · LINE (Laboratory of Intensive Exploration) · Washington D.C. · May 2026 — Aug 2026"},
+    {t:"CodeLab Web Designer",m:"Carnegie Mellon University · Computational Design Lab · Pittsburgh, PA · Aug 2025 - Present"},
+    {t:"Teaching Assistant",m:"Carnegie Mellon University · School of Architecture · Pittsburgh, PA · Aug 2022 — Present"},
+    {t:"Computational Design Intern",m:"HKS, Inc. · LINE (Laboratory of Intensive Exploration) · Dallas, TX · Aug 2025"},
+    {t:"Architectural Intern",m:"HKS, Inc. · Healthcare Design · Richmond, VA · May 2025 — Aug 2025"},
+    {t:"Architectural Intern",m:"Studio Zhu-Pei · Beijing, China · May 2024 — Aug 2024",home:false},
+    {t:"Architectural Intern",m:"IPPR International Engineering Co. · Beijing, China · May 2023 — Aug 2023",home:false},
   ],
   skills:[
-    {t:"Programming & AI",m:"Python, C#, C++, ROS, MediaPipe, Intel RealSense, OpenCV, YOLOv8, LLM APIs"},
+    {t:"Programming & AI",m:"Python, C#, C++, HTML, ROS, MediaPipe, Intel RealSense, OpenCV, YOLOv8, LLM APIs"},
     {t:"Design & BIM",m:"Rhino 8, Grasshopper, Revit, AutoCAD, Figma, Illustrator, InDesign, Photoshop"},
     {t:"Fabrication & Analysis",m:"Robot Studio, robotic milling, Karamba 3D, RhinoVAULT, V-Ray, Enscape, FEA"}
   ],
   other:[
     {t:"Living Future Accredited (LFA)",m:"International Living Future Institute · July 2026"},
+    {t:"Graduate Merit Scholarship Recipient",m:"Carnegie Mellon University · February 2025"},
     {t:"Student Representative",m:"Graduate Student Assembly Committee (GSAC) · Academic Year 25—26"},
     {t:"Event Assistant",m:"Playing Models Symposium · August 2025"},
-    {t:"Participant, DigitalFUTURES 2025",m:"Workshop — Collaborative AI: Customized Tool Making for Computational Design with LLMs · June 2025"},
+    {t:"Participant · DigitalFUTURES 2025",m:"Workshop — Collaborative AI: Customized Tool Making for Computational Design with LLMs · June 2025"},
   ]
 };
 
@@ -369,7 +387,7 @@ const PROJECTS = [
   /* ---------- COMPUTATION ---------- */
   {
     id:"section-automation", cat:"Computation", title:"Section Automation Plugin", year:"2026", wip:true,
-    image:"", tags:["Automation","Tooling"],
+    image:"images/computation/plugin/profile.jpg", tags:["Automation","Tooling"],
     sub:"A Rhino 8 / Grasshopper plugin that automates section drawing and sheet set generation.",
     meta:{Role:"Sole developer",Context:"HKS LINE research division",Stack:"C#, Python, RhinoCommon",Duration:"May — Aug 2026"},
     blocks:[
@@ -399,7 +417,8 @@ const PROJECTS = [
     id:"material-recognition", cat:"Computation", title:"Real-time Material Recognition System", year:"2025",
     image:"images/computation/CV/CV_Profile.gif", tags:["Computer Vision","AI/ML"],
     sub:"A hybrid vision pipeline that classifies recycling on a belt moving at 2 m/s.",
-    meta:{Role:"Vision pipeline",Team:"With Shiyu Chen, Carla Flores Trávez, Quincy Wang",Instructor:"Prof. Kenji Shimada",Context:"Computer Vision, CMU",Stack:"Python, OpenCV, YOLOv8-seg",Completed:"Dec 2025"},
+    meta:{Collaborators:"Shiyu Chen, Carla Flores Trávez, Quincy Wang",Instructor:"Kenji Shimada",Context:"24678 · Computer Vision for Engineers · CMU",Stack:"Python, OpenCV, YOLOv8-seg",Completed:"Dec 2025"},
+    metaSpan:{Context:2},
     blocks:[
       {tag:"The challenge",h:"Speed and accuracy pull against each other on a moving belt",
        p:"Conventional AI systems create processing bottlenecks in high-speed industrial settings. A recycling facility's conveyor runs at 2 m/s, and putting a full segmentation network on every frame forces a trade between throughput and classification accuracy — you get one or the other."},
@@ -415,7 +434,7 @@ const PROJECTS = [
     images:["images/examples/bench-form.jpg","images/examples/bench-robot.jpg","images/examples/bench-matrix.jpg","images/examples/bench-leg.jpg"],
     tags:["Robotics","Fabrication","Structures"],
     sub:"A robotically milled bench that holds itself up with compression alone — no glue, no fasteners.",
-    meta:{Role:"Form finding, toolpaths, fabrication",Team:"With Hazel Froling, Darin Kim, Eric Yu",Instructors:"Joshua Bard, Juney Lee",Context:"Architectural Robotics × Advanced Structural Design",Completed:"Dec 2024"},
+    meta:{Role:"Form finding, toolpaths, fabrication",Collaborators:"Hazel Froling, Darin Kim, Eric Yu",Instructors:"Joshua Bard, Juney Lee",Context:"Architectural Robotics × Advanced Structural Design",Completed:"Dec 2024"},
     blocks:[
       {tag:"Structure",h:"Form found in RhinoVAULT so every part stays in compression",
        p:"The bench's geometry comes out of funicular form finding: shaped so the load path stays in compression throughout, which is what allows a dry-fit assembly to stand without adhesives or fasteners. Karamba finite element analysis and panelization confirmed the surface before anything was cut."},
@@ -526,20 +545,6 @@ const PROJECTS = [
     ]
   },
   {
-    id:"boston-library", cat:"Architecture", title:"Boston Public Library", year:"2024",
-    image:"images/architecture/library/library_profile.jpg", tags:["Public","Structures","Sustainability"],
-    sub:"A mass timber library optimized to a shallower beam, then daylit through the result.",
-    meta:{Role:"Individual project",Instructors:"Erica Cochran, Jeremy Ficca, Juney Lee",Site:"Upham's Corner, Boston",Completed:"May 2024"},
-    blocks:[
-      {tag:"Intent",h:"Bright, flexible, and worth visiting without a reason",
-       p:"High ceilings, expansive open social areas, movable and customizable spaces, an enclosed private garden, and outdoor access on every floor. The test I set was whether someone would come in with no specific errand."},
-      {tag:"Structure",h:"Three structural options, then an optimization run",
-       p:"The 40-foot span went through three schemes — structure as space divider, a modified center to avoid multiple beams resting on a single column, and a final version adding two column rows to break the span. A COBYLA optimization in Goat then minimized beam depth against the number of cable supports, with trapezoidal timber sections and steel cables, pin supports at the column bases."},
-      {tag:"Envelope",h:"Performance matrix before the facade was fixed",
-       p:"Envelope options were tested as a matrix rather than chosen by eye, so the daylighting the interior depends on was resolved as a technical decision."}
-    ]
-  },
-  {
     id:"fire-station", cat:"Architecture", title:"Uptown Fire Station", year:"2024",
     image:"images/architecture/firestation/profile.jpg", images:["images/examples/fire-station-bay.jpg"],
     tags:["Public","Sustainability"],
@@ -552,6 +557,20 @@ const PROJECTS = [
        p:"Steel in the apparatus bay gives column-free spans for the equipment; on-site cast concrete shapes the peels and transitions that give the building its exterior character."},
       {tag:"Performance",h:"THERM analysis, daylighting studies, a green roof water system",
        p:"The envelope was analyzed rather than assumed — wall assembly studied in THERM, daylighting performance simulated, and a green roof collection system paired with an efficient furnace-based HVAC to cut operational cost and resource dependence."}
+    ]
+  },
+  {
+    id:"boston-library", cat:"Architecture", title:"Boston Public Library", year:"2024",
+    image:"images/architecture/library/library_profile.jpg", tags:["Public","Structures","Sustainability"],
+    sub:"A mass timber library optimized to a shallower beam, then daylit through the result.",
+    meta:{Role:"Individual project",Instructors:"Erica Cochran, Jeremy Ficca, Juney Lee",Site:"Upham's Corner, Boston",Completed:"May 2024"},
+    blocks:[
+      {tag:"Intent",h:"Bright, flexible, and worth visiting without a reason",
+       p:"High ceilings, expansive open social areas, movable and customizable spaces, an enclosed private garden, and outdoor access on every floor. The test I set was whether someone would come in with no specific errand."},
+      {tag:"Structure",h:"Three structural options, then an optimization run",
+       p:"The 40-foot span went through three schemes — structure as space divider, a modified center to avoid multiple beams resting on a single column, and a final version adding two column rows to break the span. A COBYLA optimization in Goat then minimized beam depth against the number of cable supports, with trapezoidal timber sections and steel cables, pin supports at the column bases."},
+      {tag:"Envelope",h:"Performance matrix before the facade was fixed",
+       p:"Envelope options were tested as a matrix rather than chosen by eye, so the daylighting the interior depends on was resolved as a technical decision."}
     ]
   },
   {
@@ -672,10 +691,10 @@ function viewHome(){
 
     <section class="sec">
       <div class="sec-head"><h2>About</h2><span class="count mono">Short version</span></div>
-      <div class="cols">
+      <div class="cols home-cols">
         <div class="col"><p class="lede">${esc(PROFILE.bio[0])}</p></div>
         <div class="col"><h3>Education</h3><ul>${PROFILE.education.map(e=>`<li>${esc(e.t)}<em>${esc(e.m)}</em></li>`).join("")}</ul></div>
-        <div class="col"><h3>Experience</h3><ul>${PROFILE.experience.map(e=>`<li>${esc(e.t)}<em>${esc(e.m)}</em></li>`).join("")}</ul></div>
+        <div class="col"><h3>Experience</h3><ul>${PROFILE.experience.filter(e=>e.home!==false).map(e=>`<li>${esc(e.t)}<em>${esc(e.m)}</em></li>`).join("")}</ul></div>
       </div>
       <p style="margin-top:22px"><a href="#/about" class="mono" data-cur="link" style="color:var(--mint-deep)">Full bio + skills →</a></p>
     </section>
@@ -715,13 +734,18 @@ function viewProject(id){
   return `
   <div class="wrap anim">
     <a class="back" href="#/work" data-cur="link">← Index</a>
-    <header class="p-head">
-      <p class="mono" style="color:var(--ink-3);margin-bottom:14px">${numOf(p)} — ${esc(p.cat)} — ${p.tags.map(esc).join(" / ")} — ${esc(p.year)}</p>
-      <h1>${esc(p.title)}</h1>
-      <p class="sub">${esc(p.sub)}</p>
-    </header>
-    <figure class="p-hero${p.fit==="contain"?" fit-contain":""}"><img src="${p.src}" alt="${esc(p.title)}"></figure>
-    <div class="meta">${Object.entries(p.meta).map(([k,v])=>`<div><span class="k">${esc(k)}</span><span class="v">${esc(v)}</span></div>`).join("")}</div>
+    <div class="p-top">
+      <header class="p-head">
+        <p class="mono" style="color:var(--ink-3);margin-bottom:14px">${numOf(p)} — ${esc(p.cat)} — ${p.tags.map(esc).join(" / ")} — ${esc(p.year)}</p>
+        <h1>${esc(p.title)}</h1>
+        <p class="sub">${esc(p.sub)}</p>
+      </header>
+      <figure class="p-hero${p.fit==="contain"?" fit-contain":""}"><img src="${p.src}" alt="${esc(p.title)}"></figure>
+    </div>
+    <div class="meta">${Object.entries(p.meta).map(([k,v])=>{
+      const sp=(p.metaSpan||{})[k];
+      return `<div${sp?` style="grid-column:span ${sp}"`:""}><span class="k">${esc(k)}</span><span class="v">${esc(v)}</span></div>`;
+    }).join("")}</div>
     <div class="p-body">
       ${p.blocks.length?p.blocks.map(b=>`
         <section class="blk">
@@ -746,10 +770,13 @@ function viewAbout(){
   <div class="wrap anim">
     <section class="sec">
       <div class="sec-head"><h2 style="font-size:var(--fs-h1);letter-spacing:-.03em">About</h2><span class="count mono">${esc(PROFILE.location)}</span></div>
-      <div class="cols">
-        <div class="col" style="grid-column:span 2">
-          <div class="body-copy" style="color:var(--ink)">${PROFILE.bio.map(b=>`<p>${esc(b)}</p>`).join("")}</div>
-          <p style="margin-top:26px"><a href="${PROFILE.cv}" class="mono" data-cur="link" style="color:var(--mint-deep)">Download résumé (PDF) ↗</a></p>
+      <div class="cols about-cols">
+        <div class="col">
+          <figure class="portrait">
+            <span class="frame"><img src="${esc(PROFILE.portrait)}" alt="Kaiwen Sun"></span>
+            <figcaption>Kaiwen (Serena) Sun<br>${esc(PROFILE.location)}</figcaption>
+          </figure>
+          <p style="margin-top:22px"><a href="${PROFILE.cv}" class="mono" data-cur="link" style="color:var(--mint-deep)">Download résumé (PDF) ↗</a></p>
         </div>
         <div class="col">
           <h3>Education</h3><ul>${PROFILE.education.map(e=>`<li>${esc(e.t)}<em>${esc(e.m)}</em></li>`).join("")}</ul>
