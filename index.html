@@ -656,14 +656,42 @@ const PROJECTS = [
     id:"innovation-park", cat:"Architecture", title:"Future-Mobility Innovation Park", year:"2025",
     image:"images/architecture/future/future_profile_2.jpg", tags:["Urban","Public"],
     sub:"A research campus where the connecting bridge is also the vehicle test track.",
-    meta:{Role:"Individual project",Site:"Guangyang Island, Chongqing",Program:"Research campus",Completed:"Dec 2025"},
+    meta:{Role:"Individual project",Site:"Guangyang Island, Chongqing, China",Context:"Personal Research / Competition",Completed:"Sep - Dec 2025"},
     blocks:[
-      {tag:"Premise",h:"Three buildings for three stages of automotive evolution",
-       p:"The campus is organized around the stages of the industry it serves — research and development, testing and manufacture, welcome and service — each given its own building, arranged so circulation between them tracks the progression of the work."},
-      {tag:"The bridge",h:"One structure doing two jobs at once",
-       p:"A central multi-functional bridge connects the three buildings, and doubles as a high-speed testing track. Cars run on it; people gather under and along it. The intersection is formally the most complex thing on the site, and it is deliberately the most public — testing becomes something visitors watch rather than something hidden behind a fence."},
-      {tag:"Position",h:"Technology shown, not just developed",
-       p:"The layout responds to congestion and safety as design problems, and treats autonomous systems as something the architecture should exhibit. The ambition is a destination, not only a facility."}
+      {html:`
+        <div class="lay">
+
+          <div class="row" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+            <div class="txt">
+              <p class="tagline">Premise</p>
+              <h2>Three buildings for three stages of automotive evolution</h2>
+              <p class="body-copy">The campus is organized around the stages of the industry it serves: research and development, testing and manufacture, welcome and service. Each given its own building, arranged so circulation between them tracks the progression of the work.</p>
+            </div>
+            <div class="txt">
+              <p class="tagline">The bridge</p>
+              <h2>One structure doing two jobs at once</h2>
+              <p class="body-copy">A central multi-functional bridge connects the three buildings, and doubles as a high-speed testing track. Cars run on it; people gather under and along it. The intersection is formally the most complex thing on the site, and it is deliberately the most public, testing becomes something visitors watch.</p>
+            </div>
+            <div class="txt">
+              <p class="tagline">Position</p>
+              <h2>Technology shown, not just developed</h2>
+              <p class="body-copy">The layout responds to congestion and safety as design problems, and treats autonomous systems as something the architecture should exhibit. The ambition is a destination, not only a facility.</p>
+            </div>
+          </div>
+
+          <figure class="fig">
+            <img src="images/architecture/future/content2.jpg" alt="Bridge structure">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/architecture/future/content3.jpg" alt="Program and circulation">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/architecture/future/content1.jpg" alt="Site and massing">
+          </figure>          
+
+        </div>`}
     ]
   },
   {
@@ -718,32 +746,104 @@ const PROJECTS = [
   },
   {
     id:"delta-visitor", cat:"Architecture", title:"Mississippi River Delta Visitor Center", year:"2025",
-    image:"images/architecture/mississippi/profile_2.jpg", images:["images/examples/delta-visitor-2.jpg"],
+    image:"images/architecture/mississippi/profile_2.jpg",
     tags:["Urban","Public","Sustainability"],
     sub:"Structures that trap sediment, so the delta rebuilds the ground they stand on.",
-    meta:{Role:"With Andrew Wang",Instructor:"Heather Bizon",Site:"Mississippi River Delta, Louisiana",Completed:"May 2025"},
+    meta:{Collaborators:"Andrew Wang",Instructor:"Heather Bizon",Context:"48500 · Advanced Option Studios · CMU",Site:"Mississippi River Delta, Louisiana",Duration:"Jan - May 2025"},
     blocks:[
-      {tag:"Strategy",h:"Work with the sediment instead of against the water",
-       p:"Wetlands are disappearing through sediment starvation and human intervention. Rather than resisting the flow, light frameworks placed along the delta edge slow the current, trap sediment, and scaffold ecological regeneration — guiding deposition so that new land forms over time."},
-      {tag:"Program",h:"A fishing market below, a classroom and shelter above",
-       p:"The ground floor holds an informal fishing market for local exchange; the upper floor serves educational use and adapts as emergency shelter. The program is deliberately secondary to the land-building — infrastructure first, community anchor second."},
-      {tag:"Ambition",h:"The land itself as the outcome of the design",
-       p:"Through minimal, adaptive interventions, the project imagines environmental recovery, cultural continuity and future resilience as one evolving system rather than three separate briefs."}
+      {html:`
+        <div class="lay">
+
+          <div class="row" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+            <div class="txt">
+              <p class="tagline">Strategy</p>
+              <h2>Work with the sediment instead of against the water</h2>
+              <p class="body-copy">Wetlands are disappearing through sediment starvation and human intervention. Rather than resisting the flow, light frameworks placed along the delta edge slow the current, trap sediment, and scaffold ecological regeneration, guiding deposition so that new land forms over time.</p>
+            </div>
+            <div class="txt">
+              <p class="tagline">Program</p>
+              <h2>Fishing market below, classroom and shelter above</h2>
+              <p class="body-copy">The ground floor holds an informal fishing market for local exchange; the upper floor serves educational use and adapts as emergency shelter. The program is deliberately secondary to the land-building, infrastructure first, community anchor second.</p>
+            </div>
+            <div class="txt">
+              <p class="tagline">Ambition</p>
+              <h2>The land itself as the outcome of the design</h2>
+              <p class="body-copy">Through minimal, adaptive interventions, the project imagines environmental recovery, cultural continuity and future resilience as one evolving system rather than three separate briefs.</p>
+            </div>
+          </div>
+
+          <figure class="fig">
+            <img src="images/architecture/mississippi/content1.jpg" alt="Delta strategy">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/architecture/mississippi/content2.jpg" alt="Site and section">
+          </figure>
+
+          <div class="row fill" style="grid-template-columns:minmax(0,1fr) minmax(0,1fr)">
+            <figure class="fig fill">
+              <img src="images/architecture/mississippi/render1.jpg" alt="Axon view">
+              <figcaption>Building Axon View</figcaption>
+            </figure>
+            <figure class="fig fill">
+              <img src="images/architecture/mississippi/render2.jpg" alt="Interior view" style="object-fit:cover">
+              <figcaption>Far Away Render</figcaption>
+            </figure>
+          </div>
+
+        </div>`}
     ]
   },
   {
     id:"pittsburgh-necklace", cat:"Architecture", title:"Pittsburgh Necklace", year:"2023",
-    image:"images/architecture/pitt/profile_3.jpg", images:["images/examples/pittsburgh-necklace-2.jpg"],
+    image:"images/architecture/pitt/profile_3.jpg",
     tags:["Urban","Public"],
     sub:"Three hybrid sites strung across Pittsburgh, each pairing housing with public event space.",
-    meta:{Role:"With Andrew Wang",Instructor:"Vicky Achnani",Site:"Pittsburgh, PA",Completed:"Dec 2023"},
+    meta:{Collaborators:"Andrew Wang",Instructor:"Vicky Achnani, Tuliza Sindi",Context:"48300 · Praxis Studio 1 · CMU",Site:"Pittsburgh, PA",Completed:"Aug - Dec 2023"},
     blocks:[
-      {tag:"Concept",h:"A necklace of interventions rather than a single building",
-       p:"An incline, a revitalized river island, and a reborn warehouse district in the Strip — three sites that together read as one project about Pittsburgh's industrial and cultural heritage."},
-      {tag:"Hybrids",h:"Housing crossed with the thing the site already does",
-       p:"Herr's Island Housing Hybrid, Incline Event Space Hybrid, and Strip District Warehouse Hybrid each fold dwelling into an existing public function, so the historical narrative stays active rather than commemorated."},
-      {tag:"Method",h:"Worked through physical section models",
-       p:"The project was developed and tested in sectional models at 1/32\" and 1/16\" — the fastest way to see whether the housing and the public program actually share a space or just share a footprint."}
+      {html:`
+        <div class="lay">
+
+          <div class="row" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+            <div class="txt">
+              <p class="tagline">Concept</p>
+              <h2>A necklace of interventions rather than a single building</h2>
+              <p class="body-copy">An incline, a revitalized river island, and a reborn warehouse district in the Strip: three sites that together read as one project about Pittsburgh's industrial and cultural heritage.</p>
+            </div>
+            <div class="txt">
+              <p class="tagline">Hybrids</p>
+              <h2>Housing crossed with the thing site already does</h2>
+              <p class="body-copy">Herr's Island Housing Hybrid, Incline Event Space Hybrid, and Strip District Warehouse Hybrid each fold dwelling into an existing public function, so the historical narrative stays active rather than commemorated.</p>
+            </div>
+            <div class="txt">
+              <p class="tagline">Method</p>
+              <h2>Worked through physical section models</h2>
+              <p class="body-copy">The project was developed and tested in sectional models at 1/32" and 1/16". the fastest way to see whether the housing and the public program actually share a space or just share a footprint.</p>
+            </div>
+          </div>
+
+          <figure class="fig">
+            <img src="images/architecture/pitt/content1.jpg" alt="Form generation">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/architecture/pitt/content2.jpg" alt="Herr's Island Housing Hybrid">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/architecture/pitt/content3.jpg" alt="Incline Event Space Hybrid">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/architecture/pitt/content4.jpg" alt="Strip District Warehouse Hybrid">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/architecture/pitt/Section.jpg" alt="Entire Project Sections">
+            <figcaption>Entire Project Sections</figcaption>
+            </figure>
+
+        </div>`}
     ]
   },
   {
@@ -752,12 +852,35 @@ const PROJECTS = [
     sub:"A carnival pavilion taken apart and rebuilt as a neighborhood greenhouse.",
     meta:{Role:"Design & documentation, build lead, photographer",Organizer:"NOMAS",Advisor:"Vicky Achnani",Duration:"Sep 2022 — Jun 2024"},
     blocks:[
-      {tag:"Material",h:"Bamboo, used twice",
-       p:"The project repurposes bamboo from the previous NOMAS Spring Carnival pavilion. The pavilion was prototyped in the woodshop, built on site in the seven days of carnival week, documented, then disassembled by the group in a few hours and transported to a new site."},
-      {tag:"Second life",h:"A greenhouse for an underserved neighborhood",
-       p:"The second build turns the salvaged structure into a working greenhouse for the local community, with new connection prototypes developed for the change of use — a full-scale test of the waste economy argument rather than a diagram of it."},
-      {tag:"Practice",h:"Participatory design, at full scale, with real consequences",
-       p:"Designing, prototyping, detailing systems and responding to a live brief on site — an architectural education that is tacit and responsive rather than only representational."}
+      {html:`
+        <div class="lay">
+
+          <figure class="fig">
+            <img src="images/architecture/bamboo/content.jpg" alt="Bamboo pavilion">
+            <figcaption>Carnival pavilion, built and documented on site</figcaption>
+          </figure>
+
+          <div class="row" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+            <div class="txt">
+              <p class="tagline">Material</p>
+              <h2>Bamboo, used twice</h2>
+              <p class="body-copy">The project repurposes bamboo from the previous NOMAS Spring Carnival pavilion. The pavilion was prototyped in the woodshop, built on site in the seven days of carnival week, documented, then disassembled by the group in a few hours and transported to a new site.</p>
+            </div>
+
+            <div class="txt">
+              <p class="tagline">Second life</p>
+              <h2>A greenhouse for an underserved neighborhood</h2>
+              <p class="body-copy">The second build turns the salvaged structure into a working greenhouse for the local community, with new connection prototypes developed for the change of use, a full-scale test of the waste economy argument rather than a diagram of it.</p>
+            </div>
+
+            <div class="txt">
+              <p class="tagline">Practice</p>
+              <h2>Participatory design, at full scale, with real consequences</h2>
+              <p class="body-copy">Designing, prototyping, detailing systems and responding to a live brief on site — an architectural education that is tacit and responsive rather than only representational.</p>
+            </div>
+          </div>
+
+        </div>`}
     ]
   }
 ];
