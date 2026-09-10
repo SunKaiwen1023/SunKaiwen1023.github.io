@@ -79,6 +79,21 @@ ul{padding:0;list-style:none}
 .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px var(--mint-wash);flex:none}
 .hero h1{font-size:var(--fs-display);font-weight:500;line-height:1.0;letter-spacing:-.038em;max-width:20ch;text-wrap:balance}
 .hi{background:var(--mint);box-shadow:0 0 0 .12em var(--mint);border-radius:2px}
+/* ---------- HERO: funicular field ---------- */
+.hero-stage{
+  position:relative;
+  min-height:clamp(300px,38vw,520px);
+  display:flex;flex-direction:column;justify-content:center;
+}
+#heroCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+.hero-stage .eyebrow,.hero-stage h1{position:relative;z-index:1}
+.hero-state{
+  position:absolute;right:0;bottom:0;z-index:1;pointer-events:none;
+  font-family:var(--ff-mono);font-size:10px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);font-variant-numeric:tabular-nums;
+}
+@media (max-width:640px){.hero-stage{min-height:clamp(240px,58vw,360px)}.hero-state{display:none}}
+
 .hero-foot{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:var(--gap);
   margin-top:clamp(32px,5vw,58px);padding-top:22px;border-top:1px solid var(--rule);
@@ -804,7 +819,7 @@ const PROJECTS = [
       {html:`
         <div class="lay">
 
-          <div class="row" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+          <div class="row" style="grid-template-columns:repeat(2,minmax(0,1fr))">
             <div class="txt">
               <p class="tagline">Concept</p>
               <h2>A necklace of interventions rather than a single building</h2>
@@ -814,11 +829,6 @@ const PROJECTS = [
               <p class="tagline">Hybrids</p>
               <h2>Housing crossed with the thing site already does</h2>
               <p class="body-copy">Herr's Island Housing Hybrid, Incline Event Space Hybrid, and Strip District Warehouse Hybrid each fold dwelling into an existing public function, so the historical narrative stays active rather than commemorated.</p>
-            </div>
-            <div class="txt">
-              <p class="tagline">Method</p>
-              <h2>Worked through physical section models</h2>
-              <p class="body-copy">The project was developed and tested in sectional models at 1/32" and 1/16". the fastest way to see whether the housing and the public program actually share a space or just share a footprint.</p>
             </div>
           </div>
 
@@ -926,8 +936,12 @@ function viewHome(){
   return `
   <div class="wrap anim">
     <section class="hero">
-      <p class="eyebrow mono"><span class="dot"></span>${esc(PROFILE.status)}</p>
-      <h1>${esc(st[0])}<span class="hi">${esc(st[1])}</span>${esc(st[2])}</h1>
+      <div class="hero-stage">
+        <canvas id="heroCanvas" aria-hidden="true"></canvas>
+        <p class="eyebrow mono"><span class="dot"></span>${esc(PROFILE.status)}</p>
+        <h1>${esc(st[0])}<span class="hi">${esc(st[1])}</span>${esc(st[2])}</h1>
+        <span class="hero-state" id="heroState"></span>
+      </div>
       <div class="hero-foot">
         <p>${esc(PROFILE.focus)}</p>
         <div><span class="k mono">Currently</span><span class="v">Teaching Assistant of Generative Modeling <br>Web Designer at CodeLab</span></div>
@@ -999,7 +1013,7 @@ function viewProject(id){
   const gal=(p.images||[]);
   return `
   <div class="wrap anim">
-    <a class="back" href="#/work" data-cur="link">← Index</a>
+    <a class="back" href="#/work" data-cur="link">← All Work</a>
     <div class="p-top">
       <header class="p-head">
         <p class="mono" style="color:var(--ink-3);margin-bottom:14px">${numOf(p)} — ${esc(p.cat)} — ${p.tags.map(esc).join(" / ")} — ${esc(p.year)}</p>
@@ -1068,6 +1082,147 @@ function viewAbout(){
   </div>`;
 }
 
+
+/* ============================================================
+   HERO — funicular field
+   A hanging cable net. The cursor acts as a point load and drags
+   the strands toward it; scrolling inverts the sag, so the form
+   flips from tension (hanging) to compression (arching).
+   ============================================================ */
+let heroStop=null;
+function initHero(){
+  if(heroStop){heroStop();heroStop=null;}
+  const cv=document.getElementById("heroCanvas");
+  if(!cv) return;
+  const stage=cv.parentElement, label=document.getElementById("heroState");
+  const ctx=cv.getContext("2d");
+  const reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+  const STRANDS=13, SAMP=110, PAD=120;
+  const INK="#8b948f", MINT="#52f7a8", DEEP="#067a45";
+  let W=0,H=0, rects=[], raf=0;
+  let tmx=-9999,tmy=-9999, mx=-9999,my=-9999, held=0, theld=0;
+  let tp=0, p=0;
+
+  function measure(){
+    const r=stage.getBoundingClientRect();
+    W=r.width; H=r.height;
+    const dpr=Math.min(devicePixelRatio||1,2);
+    cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    rects=[...stage.querySelectorAll("h1,.eyebrow")].map(el=>{
+      const b=el.getBoundingClientRect();
+      return {x:b.left-r.left,y:b.top-r.top,w:b.width,h:b.height};
+    });
+  }
+
+  /* distance from a point to the text blocks — lines fade out behind type */
+  function clear(x,y){
+    let d=1e9;
+    for(const r of rects){
+      const dx=Math.max(r.x-x,0,x-(r.x+r.w));
+      const dy=Math.max(r.y-y,0,y-(r.y+r.h));
+      d=Math.min(d,Math.hypot(dx,dy));
+      if(d===0) return 0.40;
+    }
+    return 0.40+0.78*Math.min(d/PAD,1);
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    if(!W||!H) return;
+    const k=1-2*p;                     // +1 hanging, 0 flat, -1 arching
+    const top=H*0.10, span=H*0.80;
+    let active=-1, best=1e9;
+    if(held>0.01){
+      for(let i=0;i<STRANDS;i++){
+        const y0=top+((i+0.5)/STRANDS)*span;
+        const d=Math.abs(y0-my);
+        if(d<best){best=d;active=i;}
+      }
+      if(best>H*0.42) active=-1;
+    }
+
+    for(let i=0;i<STRANDS;i++){
+      const y0=top+((i+0.5)/STRANDS)*span;
+      const sag=(20+58*Math.sin(Math.PI*(i+0.5)/STRANDS))*k;
+      const isA=(i===active);
+      const pts=[];
+      for(let j=0;j<SAMP;j++){
+        const t=j/(SAMP-1), x=t*W;
+        let y=y0+sag*4*t*(1-t);
+        if(held>0.01){
+          const dx=(x-mx)/(W*0.17), dy=(y0-my)/(H*0.34);
+          const infl=Math.exp(-dx*dx-dy*dy)*held;
+          y+=(my-y0)*infl*1.5;
+        }
+        pts.push([x,y]);
+      }
+      /* stroke in short segments so opacity can follow the text */
+      ctx.lineWidth=isA?1.4:1;
+      for(let j=0;j<SAMP-1;j++){
+        const a=pts[j], b=pts[j+1];
+        const al=clear((a[0]+b[0])/2,(a[1]+b[1])/2);
+        ctx.strokeStyle=isA?MINT:INK;
+        ctx.globalAlpha=al*(isA?0.95:0.42);
+        ctx.beginPath(); ctx.moveTo(a[0],a[1]); ctx.lineTo(b[0],b[1]); ctx.stroke();
+      }
+      /* nodes */
+      if(i%3===1||isA){
+        const n=isA?9:5;
+        for(let q=0;q<n;q++){
+          const t=(q+1)/(n+1), idx=Math.round(t*(SAMP-1)), [x,y]=pts[idx];
+          ctx.globalAlpha=clear(x,y)*(isA?1:0.5);
+          ctx.fillStyle=isA?DEEP:INK;
+          ctx.beginPath(); ctx.arc(x,y,isA?2.4:1.6,0,6.283); ctx.fill();
+        }
+      }
+    }
+    ctx.globalAlpha=1;
+    if(label) label.textContent =
+      (p<0.34?"Funicular · tension":p<0.66?"Form found · neutral":"Inverted · compression")+
+      "  "+String(Math.round(p*100)).padStart(3," ")+"%";
+  }
+
+  function tick(){
+    mx+=(tmx-mx)*0.14; my+=(tmy-my)*0.14; held+=(theld-held)*0.10;
+    p+=(tp-p)*0.09;
+    draw();
+    raf=requestAnimationFrame(tick);
+  }
+
+  const onMove=e=>{
+    const r=stage.getBoundingClientRect();
+    tmx=e.clientX-r.left; tmy=e.clientY-r.top;
+    const inside=tmx>-80&&tmx<W+80&&tmy>-120&&tmy<H+120;
+    theld=inside?1:0;
+    if(mx<-1000){mx=tmx;my=tmy;}
+  };
+  const onLeave=()=>{theld=0;};
+  const onScroll=()=>{ tp=Math.max(0,Math.min(1,scrollY/Math.max(H*0.58,1))); };
+  const onResize=()=>{measure();onScroll();};
+
+  measure(); onScroll(); p=tp;
+  if(reduce){ theld=0; held=0; draw(); }
+  else{
+    addEventListener("mousemove",onMove,{passive:true});
+    addEventListener("mouseleave",onLeave,{passive:true});
+    tick();
+  }
+  addEventListener("scroll",onScroll,{passive:true});
+  addEventListener("resize",onResize);
+  const ro=new ResizeObserver(measure); ro.observe(stage);
+
+  heroStop=()=>{
+    cancelAnimationFrame(raf);
+    removeEventListener("mousemove",onMove);
+    removeEventListener("mouseleave",onLeave);
+    removeEventListener("scroll",onScroll);
+    removeEventListener("resize",onResize);
+    ro.disconnect();
+  };
+}
+
 /* ============================================================ ROUTER */
 function route(){
   const parts=location.hash.replace(/^#\/?/,"").split("/").filter(Boolean);
@@ -1085,6 +1240,7 @@ function route(){
     if(a.dataset.route===current) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current");
   });
   window.scrollTo(0,0);
+  initHero();
   const f=document.getElementById("filters");
   if(f) f.addEventListener("click",e=>{
     const b=e.target.closest("button[data-v]"); if(!b) return;
