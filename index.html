@@ -82,8 +82,8 @@ ul{padding:0;list-style:none}
 /* ---------- HERO: funicular field ---------- */
 .hero-stage{
   position:relative;
-  min-height:clamp(300px,38vw,520px);
-  display:flex;flex-direction:column;justify-content:center;
+  min-height:clamp(240px,26vw,360px);
+  display:flex;flex-direction:column;
 }
 #heroCanvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
 .hero-stage .eyebrow,.hero-stage h1{position:relative;z-index:1}
@@ -180,7 +180,8 @@ ul{padding:0;list-style:none}
 }
 .frow button:hover{border-color:var(--ink);color:var(--ink)}
 .frow button[aria-pressed="true"]{background:var(--mint);border-color:var(--mint);color:var(--ink)}
-.frow.methods button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.frow.methods button[aria-pressed="true"],
+.frow.years button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
 
 /* ============================================================ ABOUT / LISTS */
 .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:var(--gap);border-top:1px solid var(--ink);padding-top:24px}
@@ -235,14 +236,33 @@ ul{padding:0;list-style:none}
 .lay .txt h2{font-size:var(--fs-h3);font-weight:600;letter-spacing:-.01em}
 .lay .stack{display:grid;gap:clamp(14px,1.6vw,22px)}
 .lay .pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.6vw,22px)}
+.lay .trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,2.8vw,48px);align-items:start}
+/* grouped sections — a hairline marks where one band ends and the next begins */
+.lay .sect{display:grid;gap:clamp(14px,1.6vw,22px);padding-top:clamp(20px,2.4vw,34px);border-top:1px solid var(--rule)}
+.lay .sect:first-child{padding-top:0;border-top:0}
+/* two columns 1:2 — rows split 2:1 on the left, 1:2 on the right */
+.lay .mosaic{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);
+  grid-template-rows:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,22px);aspect-ratio:10/7;
+}
+.lay .mosaic .m1{grid-column:1;grid-row:1/3}
+.lay .mosaic .m2{grid-column:1;grid-row:3/4}
+.lay .mosaic .m3{grid-column:2;grid-row:1/2}
+.lay .mosaic .m4{grid-column:2;grid-row:2/4}
+
 /* figures that fill the full row height, image cropped to fit */
+
 .lay .row.fill{align-items:stretch}
 .lay .row.fill .pair{align-items:stretch}
 .lay .pair{align-items:stretch}
 .lay .fig.fill{display:flex;flex-direction:column;min-height:0}
 .lay .fig.fill img{flex:1 1 auto;min-height:0;height:auto;object-fit:contain;background:var(--paper)}
 .lay figcaption{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.06em;color:var(--ink-3);text-transform:uppercase;margin-top:8px}
-@media (max-width:820px){.lay .row{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:820px){
+  .lay .row,.lay .trio,.lay .pair{grid-template-columns:minmax(0,1fr)}
+  .lay .mosaic{grid-template-columns:minmax(0,1fr);grid-template-rows:auto;aspect-ratio:auto}
+  .lay .mosaic .m1,.lay .mosaic .m2,.lay .mosaic .m3,.lay .mosaic .m4{grid-column:1;grid-row:auto}
+}
 .figure{border:1px solid var(--rule);background:var(--paper-2);overflow:hidden;aspect-ratio:16/9}
 .figure img{width:100%;height:100%;object-fit:cover}
 .note-inline{border-left:2px solid var(--mint);background:var(--mint-wash);padding:14px 16px;font-size:var(--fs-small);color:var(--ink-2);max-width:60ch}
@@ -418,6 +438,68 @@ const PROFILE = {
    ============================================================ */
 const PROJECTS = [
   /* ---------- COMPUTATION ---------- */
+ {
+    id:"scotty3d", cat:"Computation", title:"Rendering Engine from Scratch", year:"2026", wip:true,
+    image:"images/computation/scotty3D/profile.png",fit:"contain",
+    tags:["Computer Graphics","Tooling"],
+    sub:"Building a complete 3D renderer in C++: rasterizer, mesh editor, path tracer, animation system.",
+    meta:{Role:"Individual Project",Context:"15662 · Computer Graphics · CMU",Instructor:"Oscar Dadfar",Stack:"C++",Completed:"Dec 2026"},
+    blocks:[
+      {html:`
+        <div class="lay">
+          <div class="row" style="grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)">
+
+            <div class="txt">
+              <p class="tagline">Scope</p>
+              <h2>A renderer written end to end, not a renderer driven</h2>
+              <p class="body-copy">Scotty3D is the graphics framework behind CMU's 15-362/662. The application shell is given; every part that actually makes an image is not. Across six assignments I implement the pipeline myself in C++, screen-space rasterization, halfedge mesh operations, a physically based path tracer, and a skeletal animation system, each validated against the course test suite.</p>
+
+              <p class="tagline" style="margin-top:22px">Why it's here</p>
+              <p class="body-copy">Most of my work sits on top of graphics tools. This is the layer underneath them: what a clipping plane, a subdivision surface, or a soft shadow costs to compute, and why the tools I build with behave the way they do.</p>
+            </div>
+
+            <div class="txt">
+              <p class="tagline">Build order</p>
+              <ul style="list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)">
+                <li style="display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--rule)">
+                  <span class="mono" style="color:var(--ink-3)">A0</span>
+                  <span style="font-size:var(--fs-small)">Toolchain, math and container libraries, debugging workflow</span>
+                  <span class="mono" style="color:var(--mint-deep)">Done</span>
+                </li>
+                <li style="display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--rule)">
+                  <span class="mono" style="color:var(--ink-3)">A1</span>
+                  <span style="font-size:var(--fs-small)">Rasterizer — line and triangle rasterization, depth and blending, perspective-correct interpolation, mip-mapping, supersampling</span>
+                  <span class="mono" style="color:var(--ink-3)">—</span>
+                </li>
+                <li style="display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--rule)">
+                  <span class="mono" style="color:var(--ink-3)">A2</span>
+                  <span style="font-size:var(--fs-small)">MeshEdit — halfedge local operations, triangulation, Catmull-Clark and Loop subdivision, remeshing and simplification</span>
+                  <span class="mono" style="color:var(--ink-3)">—</span>
+                </li>
+                <li style="display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--rule)">
+                  <span class="mono" style="color:var(--ink-3)">A3</span>
+                  <span style="font-size:var(--fs-small)">Path tracer — camera rays, ray-primitive intersection, BVH acceleration, materials, direct and environment lighting</span>
+                  <span class="mono" style="color:var(--ink-3)">—</span>
+                </li>
+                <li style="display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--rule)">
+                  <span class="mono" style="color:var(--ink-3)">A4</span>
+                  <span style="font-size:var(--fs-small)">Animation — spline interpolation, skeleton kinematics, linear blend skinning, particle simulation</span>
+                  <span class="mono" style="color:var(--ink-3)">—</span>
+                </li>
+                <li style="display:grid;grid-template-columns:40px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--rule)">
+                  <span class="mono" style="color:var(--ink-3)">A5</span>
+                  <span style="font-size:var(--fs-small)">Final extension — an advanced rendering or simulation feature of my own choosing</span>
+                  <span class="mono" style="color:var(--ink-3)">—</span>
+                </li>
+              </ul>
+              <p class="body-copy" style="color:var(--ink-3);font-size:var(--fs-micro);margin-top:12px">Updated as each assignment lands. Coursework, so the source stays private.</p>
+            </div>
+
+          </div>
+        </div>`}
+    ]
+  },
+
   {
     id:"section-automation", cat:"Computation", title:"Section Automation Plugin", year:"2026", wip:true,
     image:"images/computation/plugin/profile.jpg", tags:["Automation","Tooling"],
@@ -556,32 +638,120 @@ const PROJECTS = [
   },
   {
     id:"compression-bench", cat:"Computation", title:"Compression-Only Funicular Bench", year:"2024",
-    image:"images/computation/bench/bench_profile.gif",
+    image:"images/computation/bench/swarf.gif",
     images:["images/examples/bench-form.jpg","images/examples/bench-robot.jpg","images/examples/bench-matrix.jpg","images/examples/bench-leg.jpg"],
     tags:["Robotics","Fabrication","Structures"],
     sub:"A robotically milled bench that holds itself up with compression alone — no glue, no fasteners.",
     meta:{Role:"Form finding, toolpaths, fabrication",Collaborators:"Hazel Froling, Darin Kim, Eric Yu",Instructors:"Joshua Bard, Juney Lee",Context:"Architectural Robotics × Advanced Structural Design",Completed:"Dec 2024"},
     blocks:[
-      {tag:"Structure",h:"Form found in RhinoVAULT so every part stays in compression",
-       p:"The bench's geometry comes out of funicular form finding: shaped so the load path stays in compression throughout, which is what allows a dry-fit assembly to stand without adhesives or fasteners. Karamba finite element analysis and panelization confirmed the surface before anything was cut."},
-      {tag:"Path planning",h:"Custom Grasshopper toolpaths, one per unique piece",
-       p:"Every component has a different geometry, so every component needs its own milling toolpath. We wrote custom robotic kinematics in Grasshopper to drive an ABB 4400 industrial arm against the specific geometry of each block — the part of the project with the least room for approximation, since the pieces only hold if they meet exactly."},
-      {tag:"Digital to physical",h:"3D-printed study models, then full-scale legs in wood",
-       p:"A printed piece matrix let us test the dry-fit logic at small scale before committing to milled timber. The full-scale leg assembled as designed, which is the whole argument: precision in the toolpath is what buys you a structure that needs no glue."}
+      {html:`
+        <div class="lay">
+
+          <div class="trio">
+            <div class="txt">
+              <p class="tagline">Structure</p>
+              <h2>Form found in RhinoVAULT so every part stays in compression</h2>
+              <p class="body-copy">The bench's geometry comes out of funicular form finding: shaped so the load path stays in compression throughout, which is what allows a dry-fit assembly to stand without adhesives or fasteners. Karamba finite element analysis and panelization confirmed the surface before anything was cut.</p>
+            </div>
+            <div class="txt">
+              <p class="tagline">Path planning</p>
+              <h2>Custom Grasshopper toolpaths, one per unique piece</h2>
+              <p class="body-copy">Every component has a different geometry, so every component needs its own milling toolpath. We wrote custom robotic kinematics in Grasshopper to drive an ABB 4400 industrial arm against the specific geometry of each block.</p>
+            </div>
+            <div class="txt">
+              <p class="tagline">Digital to physical</p>
+              <h2>3D-printed study models, then full-scale legs in wood</h2>
+              <p class="body-copy">A printed piece matrix let us test the dry-fit logic at small scale before committing to milled timber. The full-scale leg assembled as designed, which is the whole argument: precision in the toolpath is what buys you a structure that needs no glue.</p>
+            </div>
+          </div>
+
+          <figure class="fig">
+            <img src="images/computation/bench/content1.jpg" alt="Funicular bench">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/computation/bench/content2.jpg" alt="Funicular bench">
+          </figure>
+
+          <div class="pair">
+            <figure class="fig fill">
+              <img src="images/computation/bench/drilling.gif" alt="Robotic milling">
+              <figcaption>Drilling</figcaption>
+            </figure>
+            <figure class="fig fill">
+              <img src="images/computation/bench/swarf.gif" alt="Swarf">
+              <figcaption>Swarf Milling</figcaption>
+            </figure>
+          </div>
+
+          <figure class="fig">
+            <img src="images/computation/bench/content3.jpg" alt="Funicular bench">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/computation/bench/content4.jpg" alt="Funicular bench">
+          </figure>
+
+        </div>`}
     ]
   },
   {
     id:"tangible-telepresence", cat:"Computation", title:"Tangible Telepresence", year:"2025",
     image:"images/computation/tangible/tangible.gif", tags:["Physical Computing","Interaction","Internet of Things"],
     sub:"Lavender Haze — a squeeze-sensitive bedside object that lets two people hold hands across a distance.",
-    meta:{Role:"Design + build",Team:"With Summer Chao",Context:"Internet of Things, CMU",Stack:"Particle Photon 2, FSR 406, NeoPixel WS2812B, polyimide heater",Completed:"Dec 2025"},
+    meta:{Collaborators:"Summer Chao",Instructors:"Daragh Bryne",Context:"48675 · Internet of Things · CMU",Stack:"Particle Photon 2, FSR 406, NeoPixel WS2812B",Completed:"Dec 2025"},
     blocks:[
-      {tag:"Premise",h:"Distance flattens touch into text",
-       p:"A soft object for a bedside table, made for couples living apart. Hold it and it glows. The point was to find a gesture that carries affection without asking either person to compose a message about it."},
-      {tag:"Hardware",h:"A force sensor under wool, a ring of light, and a heater that melts wax",
-       p:"A Force Sensitive Resistor (FSR 406) sits beneath a wool cover and reads squeeze pressure. A 16-LED NeoPixel ring (WS2812B) is the visual output. A polyimide flexible heater plate warms a lavender wax core, so the object can answer in scent and heat rather than only in light. The Particle Photon 2 was chosen for cloud connectivity fast enough for a real-time hand-holding simulation."},
-      {tag:"Logic",h:"One person is presence; two at once is connection",
-       p:"Boolean logic separates the two states. A single user's touch produces ambient purple light — presence. When both partners hold their object at the same time, the light brightens and the heater releases warmth and lavender scent — connection. The distinction is the whole interaction design: being thought of, versus being met."}
+      {html:`
+        <div class="lay">
+
+          <section class="sect">
+            <div class="pair">
+              <div class="txt">
+                <p class="tagline">Hardware</p>
+                <h2>A force sensor under wool, a ring of light, and a heater that melts wax</h2>
+                <p class="body-copy">A Force Sensitive Resistor (FSR 406) sits beneath a wool cover and reads squeeze pressure. A 16-LED NeoPixel ring (WS2812B) is the visual output. A polyimide flexible heater plate warms a lavender wax core, so the object can answer in scent and heat rather than only in light. The Particle Photon 2 was chosen for cloud connectivity fast enough for a real-time hand-holding simulation.</p>
+              </div>
+              <div class="txt">
+                <p class="tagline">Logic</p>
+                <h2>One person is presence, two at once is connection</h2>
+                <p class="body-copy">Boolean logic separates the two states. A single user's touch produces ambient purple light: presence. When both partners hold their object at the same time, the light brightens and the heater releases warmth and lavender scent: connection. The distinction is the whole interaction design: being thought of, versus being met.</p>
+              </div>
+            </div>
+
+            <div class="pair">
+              <figure class="fig fill">
+                <img src="images/computation/tangible/system.png" alt="System diagram">
+                <figcaption>System</figcaption>
+              </figure>
+              <figure class="fig fill">
+                <img src="images/computation/tangible/workflow.png" alt="Interaction workflow">
+                <figcaption>Workflow</figcaption>
+              </figure>
+            </div>
+          </section>
+
+          <section class="sect">
+            <div class="mosaic">
+              <figure class="fig fill m1">
+                <img src="images/computation/tangible/device1.png" alt="Lavender Haze device">
+                <figcaption>Device</figcaption>
+              </figure>
+              <figure class="fig fill m2">
+                <img src="images/computation/tangible/device2.png" alt="Lavender Haze device, detail">
+                <figcaption>Device Detail</figcaption>
+              </figure>
+              <figure class="fig fill m3">
+                <img src="images/computation/tangible/scene.jpeg" alt="In use, bedside">
+                <figcaption>Use Scene</figcaption>
+              </figure>
+              <figure class="fig fill m4">
+                <img src="images/computation/tangible/code.png" alt="Firmware">
+                <figcaption>Code</figcaption>
+              </figure>
+            </div>
+          </section>
+
+        </div>`}
     ]
   },
   {
@@ -671,7 +841,7 @@ const PROJECTS = [
     id:"innovation-park", cat:"Architecture", title:"Future-Mobility Innovation Park", year:"2025",
     image:"images/architecture/future/future_profile_2.jpg", tags:["Urban","Public"],
     sub:"A research campus where the connecting bridge is also the vehicle test track.",
-    meta:{Role:"Individual project",Site:"Guangyang Island, Chongqing, China",Context:"Personal Research / Competition",Completed:"Sep - Dec 2025"},
+    meta:{Role:"Individual project",Site:"Guangyang Island, Chongqing, China",Context:"Personal Research / Competition",Completed:"Dec 2025"},
     blocks:[
       {html:`
         <div class="lay">
@@ -712,51 +882,138 @@ const PROJECTS = [
   {
     id:"laurel-caverns", cat:"Architecture", title:"Laurel Caverns Visitor Center", year:"2026",
     image:"images/architecture/terralogic/profile_4.jpg",
-    // images:["images/architecture/terralogic/atrium.jpg","images/architecture/terralogic/facade.jpg"],
     tags:["Public","Structures","Fabrication"],
     sub:"A visitor center whose geometry and terracotta façade are both derived from how crystals grow.",
-    meta:{Role:"With Andrew Wang",Instructor:"Laura Garofalo",Context:"Terralogic Studio — final B.Arch studio",Site:"Laurel Caverns, Pennsylvania",Completed:"Spring 2026"},
+    meta:{Collaborator:"Andrew Wang",Instructor:"Laura Garofalo",Context:"48550",Site:"Laurel Caverns, Pennsylvania",Completed:"May 2026"},
     blocks:[
-      {tag:"Precedent",h:"Two minerals, two sets of formal rules",
-       p:"I studied sapphire — its molecular structure, crystallization process and trigonal geometry — extracting faceted surfaces, 60-degree intersections, layered subdivisions and directional lattice lines. Andrew studied pyrite: cubic crystallization, geological formation, and twinning, where two crystal parts grow together in fixed mirrored or rotated symmetry. Physical models tested each logic in chipboard, string, plaster and acrylic before either became architecture."},
+      {html:`
+        <div class="lay">
 
-      {tag:"Site",h:"A building that hands you over to the cavern",
-       p:"The project sits at Laurel Caverns, positioned along the natural water path and existing road network so that access, parking and circulation all frame entry toward the caves. The section is the argument: a continuous vertical sequence runs from the atrium down past a small theatre beneath the gallery and further into the cavern itself, so the architecture works as a transition into a subterranean condition rather than a destination of its own."},
+          <div class="trio">
+            <div class="txt">
+              <p class="tagline">Site</p>
+              <h2>A building that hands you over to the cavern</h2>
+              <p class="body-copy">The project sits at Laurel Caverns, positioned along the natural water path and existing road network so that access, parking and circulation all frame entry toward the caves. The section is the argument: a continuous vertical sequence runs from the atrium down past a small theatre beneath the gallery and further into the cavern itself, so the architecture works as a transition into a subterranean condition rather than a destination of its own.</p>
+            </div>
 
-      {tag:"Form",h:"Program mapped, rotated for sun, then opened and stitched by an atrium",
-       p:"Form generation ran as an explicit sequence: major program elements mapped and resized into volumetric masses, rotated to optimize sunlight, views and entry, then carved with strategic openings to bring daylight to key spaces. A central glass atrium finally connects the volumes, carrying circulation and visual continuity across exhibition, auditorium, café, reception, and the office and education spaces consolidated below."},
+            <div class="txt">
+              <p class="tagline">Form</p>
+              <h2>Program mapped, rotated for sun, then opened and stitched by an atrium</h2>
+              <p class="body-copy">Form generation ran as an explicit sequence: major program elements mapped and resized into volumetric masses, rotated to optimize sunlight, views and entry, then carved with strategic openings to bring daylight to key spaces. A central glass atrium finally connects the volumes, carrying circulation and visual continuity across exhibition, auditorium, café, reception, and the office and education spaces consolidated below.</p>
+            </div>
 
-      {tag:"Façade",h:"Seven panel variations, one gradient, a constructible detail",
-       p:"The terracotta façade abstracts the crystalline precedent into a systematic field of triangulated 2' × 2' panels whose depth varies by about an inch. Seven variations (A–G) generate a controlled gradient from least to most pronounced deformation — enough variation to read as a surface, few enough moulds to actually fabricate. Panels hook onto an aluminum railing and vertical carrier track anchored to a concrete wall with rigid insulation, and their offset depth creates a ventilated cavity behind. A layered glaze of AMACO Sapphire Blue, Botanical Teal Gloss and HF-10 Clear produces the sapphire-like finish, and a 3D-printed prototype verified panel attachment and alignment across multiple units."}
+            <div class="txt">
+              <p class="tagline">Façade</p>
+              <h2>Seven panel variations, one gradient, a constructible detail</h2>
+              <p class="body-copy">The terracotta façade abstracts the crystalline precedent into a systematic field of triangulated 2' × 2' panels whose depth varies by about an inch. Seven variations (A–G) generate a controlled gradient from least to most pronounced deformation, enough variation to read as a surface, few enough moulds to actually fabricate. Panels hook onto an aluminum railing and vertical carrier track anchored to a concrete wall with rigid insulation, and their offset depth creates a ventilated cavity behind.</p>
+            </div>
+          </div>
+
+          <figure class="fig">
+            <img src="images/architecture/terralogic/content.jpg" alt="Laurel Caverns Visitor Center">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/architecture/terralogic/content1.jpg" alt="Laurel Caverns Visitor Center">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/architecture/terralogic/content2.jpg" alt="Laurel Caverns Visitor Center">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/architecture/terralogic/plan.jpg" alt="Plan">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/architecture/terralogic/section.jpg" alt="Section">
+          </figure>
+
+        </div>`}
     ]
   },
   {
     id:"fire-station", cat:"Architecture", title:"Uptown Fire Station", year:"2024",
-    image:"images/architecture/firestation/profile.jpg", images:["images/examples/fire-station-bay.jpg"],
-    tags:["Public","Sustainability"],
+    image:"images/architecture/firestation/profile_2.jpg",fit:"contain",
+    tags:["Public","Sustainability","Detailing"],
     sub:"A fire station designed to be a civic space rather than a closed door on the street.",
-    meta:{Role:"With Andrew Wang",Instructors:"Kristina Fisher, Gerard Damiani",Consultants:"Juney Lee, James Dudt, Studio NYL",Site:"Uptown, Pittsburgh"},
+    meta:{Collaborators:"Andrew Wang",Instructors:"Kristina Fisher, Gerard Damiani",Consultants:"Juney Lee, Studio NYL",Context:"48400 · Praxis Studio 3 · CMU",Completed:"Dec 2024"},
     blocks:[
-      {tag:"Position",h:"An emergency service hub that the neighborhood can see into",
-       p:"Sited between Forbes and Fifth, the station uses visible interiors and inviting entrances to make the building legible from the sidewalk — inclusivity and transparency treated as architectural requirements, not slogans."},
-      {tag:"Material",h:"Steel where the span matters, cast concrete where the form does",
-       p:"Steel in the apparatus bay gives column-free spans for the equipment; on-site cast concrete shapes the peels and transitions that give the building its exterior character."},
-      {tag:"Performance",h:"THERM analysis, daylighting studies, a green roof water system",
-       p:"The envelope was analyzed rather than assumed — wall assembly studied in THERM, daylighting performance simulated, and a green roof collection system paired with an efficient furnace-based HVAC to cut operational cost and resource dependence."}
+      {html:`
+        <div class="lay">
+
+          <div class="trio">
+            <div class="txt">
+              <p class="tagline">Position</p>
+              <h2>An emergency service hub the neighborhood can see into</h2>
+              <p class="body-copy">Sited between Forbes and Fifth, the station uses visible interiors and inviting entrances to make the building legible from the sidewalk — inclusivity and transparency treated as architectural requirements, not slogans.</p>
+            </div>
+            <div class="txt">
+              <p class="tagline">Material</p>
+              <h2>Steel where the span matters, cast concrete where the form does</h2>
+              <p class="body-copy">Steel in the apparatus bay gives column-free spans for the equipment; on-site cast concrete shapes the peels and transitions that give the building its exterior character.</p>
+            </div>
+            <div class="txt">
+              <p class="tagline">Performance</p>
+              <h2>THERM analysis, daylighting studies, a green roof water system</h2>
+              <p class="body-copy">The envelope was analyzed rather than assumed — wall assembly studied in THERM, daylighting performance simulated, and a green roof collection system paired with an efficient furnace-based HVAC to cut operational cost and resource dependence.</p>
+            </div>
+          </div>
+
+          <figure class="fig">
+            <img src="images/architecture/firestation/content1.jpg" alt="Uptown Fire Station">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/architecture/firestation/content2.jpg" alt="Uptown Fire Station">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/architecture/firestation/content3.jpg" alt="Uptown Fire Station">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/architecture/firestation/content4.jpg" alt="Uptown Fire Station">
+          </figure>
+
+        </div>`}
     ]
   },
   {
     id:"boston-library", cat:"Architecture", title:"Boston Public Library", year:"2024",
     image:"images/architecture/library/library_profile.jpg", tags:["Public","Structures","Sustainability"],
     sub:"A mass timber library optimized to a shallower beam, then daylit through the result.",
-    meta:{Role:"Individual project",Instructors:"Erica Cochran, Jeremy Ficca, Juney Lee",Site:"Upham's Corner, Boston",Completed:"May 2024"},
+    meta:{Role:"Individual project",Instructors:"Erica Cochran, Jeremy Ficca, Juney Lee",Context:"48350 · Praxis Studio 2 · CMU",Completed:"May 2024"},
     blocks:[
-      {tag:"Intent",h:"Bright, flexible, and worth visiting without a reason",
-       p:"High ceilings, expansive open social areas, movable and customizable spaces, an enclosed private garden, and outdoor access on every floor. The test I set was whether someone would come in with no specific errand."},
-      {tag:"Structure",h:"Three structural options, then an optimization run",
-       p:"The 40-foot span went through three schemes — structure as space divider, a modified center to avoid multiple beams resting on a single column, and a final version adding two column rows to break the span. A COBYLA optimization in Goat then minimized beam depth against the number of cable supports, with trapezoidal timber sections and steel cables, pin supports at the column bases."},
-      {tag:"Envelope",h:"Performance matrix before the facade was fixed",
-       p:"Envelope options were tested as a matrix rather than chosen by eye, so the daylighting the interior depends on was resolved as a technical decision."}
+      {html:`
+        <div class="lay">
+
+          <div class="pair">
+            <div class="txt">
+              <p class="tagline">Intent</p>
+              <h2>Bright, flexible, and worth visiting without a reason</h2>
+              <p class="body-copy">High ceilings, expansive open social areas, movable and customizable spaces, an enclosed private garden, and outdoor access on every floor. The test I set was whether someone would come in with no specific errand.</p>
+            </div>
+            <div class="txt">
+              <p class="tagline">Structure</p>
+              <h2>Three structural options, then an optimization run</h2>
+              <p class="body-copy">Structure as space divider, a modified center to avoid multiple beams resting on a single column. A COBYLA optimization in Goat then minimized beam depth against the number of cable supports, with trapezoidal timber sections and steel cables, pin supports at the column bases.</p>
+            </div>
+          </div>
+
+          <figure class="fig">
+            <img src="images/architecture/library/content1.jpg" alt="Boston Public Library">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/architecture/library/content2.jpg" alt="Boston Public Library">
+          </figure>
+
+          <figure class="fig">
+            <img src="images/architecture/library/content3.jpg" alt="Boston Public Library">
+          </figure>
+
+        </div>`}
     ]
   },
   {
@@ -814,7 +1071,7 @@ const PROJECTS = [
     image:"images/architecture/pitt/profile_3.jpg",
     tags:["Urban","Public"],
     sub:"Three hybrid sites strung across Pittsburgh, each pairing housing with public event space.",
-    meta:{Collaborators:"Andrew Wang",Instructor:"Vicky Achnani, Tuliza Sindi",Context:"48300 · Praxis Studio 1 · CMU",Site:"Pittsburgh, PA",Completed:"Aug - Dec 2023"},
+    meta:{Collaborators:"Andrew Wang",Instructor:"Vicky Achnani, Tuliza Sindi",Context:"48300 · Praxis Studio 1 · CMU",Site:"Pittsburgh, PA",Completed:"Dec 2023"},
     blocks:[
       {html:`
         <div class="lay">
@@ -858,7 +1115,7 @@ const PROJECTS = [
   },
   {
     id:"all-about-bamboo", cat:"Architecture", title:"All About Bamboo", year:"2024",
-    image:"images/architecture/bamboo/bamboo_profile.jpeg", tags:["Design-Build","Sustainability","Public"],
+    image:"images/architecture/bamboo/bamboo_profile.jpeg", tags:["Design-Build","Sustainability"],
     sub:"A carnival pavilion taken apart and rebuilt as a neighborhood greenhouse.",
     meta:{Role:"Design & documentation, build lead, photographer",Organizer:"NOMAS",Advisor:"Vicky Achnani",Duration:"Sep 2022 — Jun 2024"},
     blocks:[
@@ -981,13 +1238,16 @@ function viewHome(){
   </div>`;
 }
 
-let fCat="All", fTag="All";
+let fCat="All", fYear="All", fTag="All";
 function viewWork(){
   const cats=["All","Computation","Architecture"];
   const pool=fCat==="All"?PROJECTS:PROJECTS.filter(p=>p.cat===fCat);
-  const tags=["All",...new Set(pool.flatMap(p=>p.tags))];
+  const years=["All",...[...new Set(pool.map(p=>p.year))].sort().reverse()];
+  if(!years.includes(fYear)) fYear="All";
+  const byYear=fYear==="All"?pool:pool.filter(p=>p.year===fYear);
+  const tags=["All",...new Set(byYear.flatMap(p=>p.tags))];
   if(!tags.includes(fTag)) fTag="All";
-  const list=fTag==="All"?pool:pool.filter(p=>p.tags.includes(fTag));
+  const list=fTag==="All"?byYear:byYear.filter(p=>p.tags.includes(fTag));
   return `
   <div class="wrap anim">
     <section class="sec">
@@ -997,6 +1257,7 @@ function viewWork(){
       </div>
       <div class="filterbar" id="filters">
         <div class="frow"><span class="lbl">Field</span>${cats.map(t=>`<button data-k="cat" data-v="${esc(t)}" aria-pressed="${t===fCat}">${esc(t)}</button>`).join("")}</div>
+        <div class="frow years"><span class="lbl">Year</span>${years.map(t=>`<button data-k="year" data-v="${esc(t)}" aria-pressed="${t===fYear}">${esc(t)}</button>`).join("")}</div>
         <div class="frow methods"><span class="lbl">Method</span>${tags.map(t=>`<button data-k="tag" data-v="${esc(t)}" aria-pressed="${t===fTag}">${esc(t)}</button>`).join("")}</div>
       </div>
       ${cardsHTML(list)}
@@ -1228,7 +1489,7 @@ function route(){
   const parts=location.hash.replace(/^#\/?/,"").split("/").filter(Boolean);
   let html, current="";
   if(parts[0]==="work" && parts[1]==="cat" && parts[2]){
-    fCat=decodeURIComponent(parts[2]); fTag="All";
+    fCat=decodeURIComponent(parts[2]); fYear="All"; fTag="All";
     html=viewWork(); current="work";
   }
   else if(parts[0]==="work" && parts[1]){ html=viewProject(parts[1]); current="work"; }   // ← this was missing
@@ -1244,7 +1505,9 @@ function route(){
   const f=document.getElementById("filters");
   if(f) f.addEventListener("click",e=>{
     const b=e.target.closest("button[data-v]"); if(!b) return;
-    if(b.dataset.k==="cat"){ fCat=b.dataset.v; fTag="All"; } else { fTag=b.dataset.v; }
+    if(b.dataset.k==="cat"){ fCat=b.dataset.v; fYear="All"; fTag="All"; }
+    else if(b.dataset.k==="year"){ fYear=b.dataset.v; }
+    else { fTag=b.dataset.v; }
     route();
   });
 }
