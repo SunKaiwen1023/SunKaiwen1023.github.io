@@ -3,11 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kaiwen Sun Portfolio</title>
-<meta name="description" content="Kaiwen (Serena) Sun — computational designer at Carnegie Mellon. Robotics, computer vision, and design automation for architecture.">
+<title>Kaiwen (Serena) Sun — Computational Designer</title>
+<meta name="description" content="Computational designer building the intelligent systems that turn design into what gets built. M.S. Computational Design, Carnegie Mellon.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="icon" href="images/general/logo.svg" type="image/svg+xml">
 <style>
 /* ============================================================
    TOKENS — paper white, green-biased neutrals, mint #52F7A8.
@@ -65,7 +66,7 @@ ul{padding:0;list-style:none}
 }
 .site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
 .brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.01em;font-size:.95rem}
-.brand .chip{width:9px;height:9px;background:var(--mint);border-radius:1px;flex:none}
+.brand .chip{width:18px;height:18px;flex:none;display:block}
 .nav{display:flex;align-items:center;gap:clamp(14px,2vw,28px)}
 .nav a{font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-2);padding:6px 0;position:relative;white-space:nowrap}
 .nav a::after{content:"";position:absolute;left:0;right:100%;bottom:2px;height:1px;background:var(--ink);transition:right .3s cubic-bezier(.2,.7,.2,1)}
@@ -344,7 +345,7 @@ body.cur-hidden .cur,body.cur-hidden .cur-dot{opacity:0}
 
 <header class="site-head">
   <div class="wrap">
-    <a class="brand" href="#/" data-cur="link"><span class="chip"></span>KAIWEN&nbsp;(SERENA)&nbsp;SUN</a>
+    <a class="brand" href="#/" data-cur="link"><svg class="chip" viewBox="0 0 24 24" aria-hidden="true"><path d="M0 0 H24 V5.4 L5.4 24 H0 Z" fill="#52F7A8"/><path d="M24 8.6 V24 H8.6 Z" fill="#131B21"/></svg>KAIWEN&nbsp;(SERENA)&nbsp;SUN</a>
     <nav class="nav" id="nav">
       <a href="#/work" data-route="work">Work</a>
       <a href="#/about" data-route="about">About</a>
