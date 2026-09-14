@@ -27,7 +27,7 @@
   --ff-sans:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
   --ff-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 
-  --fs-display:clamp(2.1rem,4.4vw,3.9rem);
+ --fs-display:clamp(2.0rem,3.8vw,3.35rem);
   --fs-h1:clamp(1.85rem,3.8vw,2.9rem);
   --fs-h2:clamp(1.3rem,2.1vw,1.75rem);
   --fs-h3:1.08rem;
@@ -77,8 +77,8 @@ ul{padding:0;list-style:none}
 .hero{padding-block:clamp(48px,8vw,110px) clamp(36px,5vw,64px)}
 .eyebrow{display:flex;align-items:center;gap:9px;color:var(--ink-2);margin-bottom:clamp(22px,3.6vw,36px)}
 .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px var(--mint-wash);flex:none}
-.hero h1{font-size:var(--fs-display);font-weight:500;line-height:1.0;letter-spacing:-.038em;max-width:20ch;text-wrap:balance}
-.hi{background:var(--mint);box-shadow:0 0 0 .12em var(--mint);border-radius:2px}
+.hero h1{font-size:var(--fs-display);font-weight:500;line-height:1.12;letter-spacing:-.038em;max-width:26ch;text-wrap:pretty}
+.hi{background:var(--mint);border-radius:2px;white-space:nowrap;box-shadow:.12em 0 0 var(--mint),-.12em 0 0 var(--mint);-webkit-box-decoration-break:clone;box-decoration-break:clone}
 /* ---------- HERO: funicular field ---------- */
 .hero-stage{
   position:relative;
@@ -92,6 +92,7 @@ ul{padding:0;list-style:none}
   font-family:var(--ff-mono);font-size:10px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--ink-3);font-variant-numeric:tabular-nums;
 }
+@media (max-width:520px){.hi{white-space:normal}}
 @media (max-width:640px){.hero-stage{min-height:clamp(240px,58vw,360px)}.hero-state{display:none}}
 
 .hero-foot{
@@ -393,8 +394,7 @@ body.cur-hidden .cur,body.cur-hidden .cur-dot{opacity:0}
    ============================================================ */
 const PROFILE = {
   name:"Kaiwen Sun",
-  statement:["Computational designer building the ","tools"," between architectural intent and the machines that make it."],
-  location:"Pittsburgh, PA",
+  statement:["Computational designer building the\u00A0","intelligent systems"," that translate complex design into what gets built."],  location:"Pittsburgh, PA",
   status:"M.S. Computational Design, Carnegie Mellon — graduating May 2027",
   focus:"Robotics, computer vision, and design automation, plus the architecture that gives them something to build.",
   email:"sunkaiwen1023@gmail.com",
@@ -402,7 +402,7 @@ const PROFILE = {
   cv:"https://drive.google.com/file/d/1rukTy9emOoNi7LMfIIsTwQJo8BFKRaoE/view?usp=drive_link",
   portrait:"images/general/headshot_3.jpg",
   bio:[
-    "I am a computational designer finishing an integrated M.S. in Computational Design at Carnegie Mellon, where I also completed a five-year B.Arch. My work sits on the seam between design intent and fabrication: Grasshopper tooling that removes a week of drafting, vision pipelines that let a machine recognize what it is looking at, and robot workflows that turn a form-found surface into milled parts that fit dry.",
+    "I am a computational designer finishing an integrated M.S. in Computational Design at Carnegie Mellon, where I also completed a five-year B.Arch. My work sits on the seam between design intent and execution: design automation, computer vision, robotics, and the software that carries a decision from a model through to the thing itself.",
     "That seam is where I am most useful. Five years of architecture taught me to hold a project's intent, why the span is forty feet, why the entrance faces that way, and computation is how I keep that intent intact through the parts of the process that usually flatten it. At HKS I built a Rhino plugin that generated an entire section documentation set, and maintained the computational workflow behind a stadium's exterior model through the 50% DD milestone.",
     "I teach as well: I have been a TA in the CMU School of Architecture since 2022, across digital media, structures, and generative modeling. Explaining a script to someone who has never opened Grasshopper is still the fastest way I know to find out whether I actually understand it."
   ],
@@ -506,7 +506,7 @@ const PROJECTS = [
   },
 
   {
-    id:"section-automation", cat:"Computation", title:"Section Automation Plugin", year:"2026", wip:true,
+    id:"section-automation", cat:"Computation", title:"Section Automation Plugin", year:"2026",
     image:"images/computation/plugin/profile.jpg", tags:["Automation","Tooling"],
     sub:"A Rhino 8 / Grasshopper plugin that automates section drawing and sheet set generation.",
     meta:{Role:"Sole developer",Context:"HKS LINE (Labatory of INtensive Exploration)",Stack:"C#, Python, RhinoCommon",Completed:"Aug 2026"},
@@ -603,7 +603,7 @@ const PROJECTS = [
   },
   {
     id:"gesture-to-robot", cat:"Computation", title:"Gesture-to-Robot Collaborative Drawing", year:"2026",
-    image:"images/computation/air/air_profile.gif", tags:["Robotics","Computer Vision","AI/ML"],
+    image:"images/computation/air/air_profile.gif", tags:["Robotics","Computer Vision","AI/ML","Interaction"],
     sub:"A robot that watches you draw in the air and answers with a line of its own.",
     meta:{Collaborators:"Carla Flores Trávez, Daehong Kim, Sheen Cao",Instructor:"Vina Wei",Context:"48757 · Robotics with Perception · CMU",Stack:"Intel RealSense, MediaPipe, ROS, Grasshopper, LLM API",Duration:"Jan — Apr 2026"},
     metaSpan:{Stack:2},
@@ -1336,7 +1336,7 @@ function cardsHTML(list){
     <a class="card" href="#/work/${p.id}" data-cur="view">
       <span class="shot${p.fit==="contain"?" fit-contain":""}"><img src="${p.src}" alt="${esc(p.title)}" loading="lazy"></span>
       <span class="meta-line">${numOf(p)} · ${esc(p.year)}${p.wip?' · <span class="wip">In progress</span>':''}</span>
-      <span class="pills">${p.tags.slice(0,3).map(t=>`<span class="pill">${esc(t)}</span>`).join("")}</span>
+      <span class="pills">${p.tags.map(t=>`<span class="pill">${esc(t)}</span>`).join("")}</span>
       <h3>${esc(p.title)}</h3>
       <p>${esc(p.sub)}</p>
     </a>`).join("")}</div>`;
@@ -1664,7 +1664,10 @@ function route(){
     if(b.dataset.k==="cat"){ fCat=b.dataset.v; fYear="All"; fTag="All"; }
     else if(b.dataset.k==="year"){ fYear=b.dataset.v; }
     else { fTag=b.dataset.v; }
-    route();
+    /* a #/work/cat/... URL re-applies its category on every route(),
+       so leave that URL before re-rendering or the filter can never change */
+    if(location.hash.startsWith("#/work/cat/")) location.hash="#/work";
+    else route();
   });
 }
 addEventListener("hashchange",route);
