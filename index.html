@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Kaiwen Sun Portfolio</title>
-<meta name="description" content="Computational designer building the intelligent systems that turn design into what gets built. M.S. Computational Design, Carnegie Mellon.">
+<meta name="description" content="Computational designer building the intelligent systems that turn design into what gets built. M.S. Computational Design, Carnegie Mellon University.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -102,7 +102,7 @@ ul{padding:0;list-style:none}
 }
 .hero-foot p{color:var(--ink-2);font-size:var(--fs-small);max-width:36ch;margin:0}
 .hero-foot .k{color:var(--ink-3);display:block;margin-bottom:8px}
-.hero-foot .v{color:var(--ink);font-size:var(--fs-small)}
+.hero-foot .v{color:var(--ink);font-size:var(--fs-small);max-width:36ch}
 
 /* ============================================================ SECTIONS */
 .sec{padding-block:clamp(40px,5.5vw,72px)}
@@ -396,14 +396,14 @@ body.cur-hidden .cur,body.cur-hidden .cur-dot{opacity:0}
 const PROFILE = {
   name:"Kaiwen Sun",
   statement:["Computational designer building the\u00A0","intelligent systems"," that translate complex design into what gets built."],  location:"Pittsburgh, PA",
-  status:"M.S. Computational Design, Carnegie Mellon — graduating May 2027",
+  status:"M.S. Computational Design, Carnegie Mellon University — graduating May 2027",
   focus:"Robotics, computer vision, and design automation, plus the architecture that gives them something to build.",
   email:"sunkaiwen1023@gmail.com",
   emailSchool:"kaiwens@andrew.cmu.edu",
   cv:"https://drive.google.com/file/d/1rukTy9emOoNi7LMfIIsTwQJo8BFKRaoE/view?usp=drive_link",
   portrait:"images/general/headshot_3.jpg",
   bio:[
-    "I am a computational designer finishing an integrated M.S. in Computational Design at Carnegie Mellon, where I also completed a five-year B.Arch. My work sits on the seam between design intent and execution: design automation, computer vision, robotics, and the software that carries a decision from a model through to the thing itself.",
+    "I am a computational designer finishing an M.S. in Computational Design at Carnegie Mellon University, where I also completed a five-year B.Arch. My work sits on the seam between design intent and execution: design automation, computer vision, robotics, and the software that carries a decision from a model through to the thing itself.",
     "That seam is where I am most useful. Five years of architecture taught me to hold a project's intent, why the span is forty feet, why the entrance faces that way, and computation is how I keep that intent intact through the parts of the process that usually flatten it. At HKS I built a Rhino plugin that generated an entire section documentation set, and maintained the computational workflow behind a stadium's exterior model through the 50% DD milestone.",
     "I teach as well: I have been a TA in the CMU School of Architecture since 2022, across digital media, structures, and generative modeling. Explaining a script to someone who has never opened Grasshopper is still the fastest way I know to find out whether I actually understand it."
   ],
@@ -1357,7 +1357,7 @@ function viewHome(){
         <span class="hero-state" id="heroState"></span>
       </div>
       <div class="hero-foot">
-        <p>${esc(PROFILE.focus)}</p>
+        <div><span class="k mono">Focus</span><span class="v">${esc(PROFILE.focus)}</span></div>
         <div><span class="k mono">Currently</span><span class="v">Teaching Assistant of Generative Modeling <br>Web Designer at CodeLab</span></div>
         <div><span class="k mono">Recently</span><span class="v">Computational Design Intern, HKS LINE, Washington DC</span></div>
       </div>
