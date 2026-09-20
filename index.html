@@ -259,6 +259,8 @@ ul{padding:0;list-style:none}
 .lay .fig.fill img{flex:1 1 auto;min-height:0;height:auto;object-fit:contain;background:var(--paper)}
 .lay .btn{justify-self:center;display:inline-flex;align-items:center;gap:9px;font-family:var(--ff-mono);font-size:var(--fs-micro);letter-spacing:.11em;text-transform:uppercase;color:var(--ink);text-decoration:none;border:1px solid var(--ink);border-radius:2px;padding:13px 26px;margin-top:clamp(8px,1.4vw,18px);transition:background .2s ease,color .2s ease}
 .lay .btn:hover{background:var(--ink);color:var(--paper)}
+.lay .btn-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:clamp(8px,1.4vw,18px)}
+.lay .btn-row .btn{margin-top:0}
 .lay .gal{display:grid;gap:clamp(10px,1.2vw,16px);aspect-ratio:8/1}
 .lay .gal.six{grid-template-columns:repeat(6,minmax(0,1fr))}
 .lay .gal.five{grid-template-columns:repeat(5,minmax(0,1fr))}
@@ -521,8 +523,8 @@ const PROJECTS = [
     id:"section-automation", cat:"Computation", title:"Section Automation Plugin", year:"2026",
     image:"images/computation/plugin/profile.jpg", tags:["Automation","Tooling"],
     sub:"A Rhino 8 / Grasshopper plugin that automates section drawing and sheet set generation.",
-    meta:{Role:"Sole developer",Context:"HKS LINE (Labatory of INtensive Exploration)",Stack:"C#, Python, RhinoCommon",Completed:"Aug 2026"},
-    metaSpan:{Content:2},
+    meta:{Role:"Developer",Context:"HKS LINE (Labatory of INtensive Exploration)",Advisors:"Deniz Arslan, Tim Logan",Stack:"C#, Python, RhinoCommon",Completed:"Aug 2026"},
+    metaSpan:{Context:2},
     blocks:[
       {html:`
         <div class="lay">
@@ -608,7 +610,10 @@ const PROJECTS = [
             </figure>
           </div>
 
-          <a class="btn" data-cur="link" style="justify-self:start" href="https://github.com/SunKaiwen1023/SectionToolkit" target="_blank" rel="noopener">Source and releases <span aria-hidden="true">↗</span></a>
+          <div class="btn-row">
+            <a class="btn" data-cur="link" href="https://www.food4rhino.com/en/app/sectiontoolkit" target="_blank" rel="noopener">Install from Food4Rhino <span aria-hidden="true">↗</span></a>
+            <a class="btn" data-cur="link" href="https://github.com/SunKaiwen1023/SectionToolkit" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">↗</span></a>
+          </div>
 
         </div>`}
     ]
