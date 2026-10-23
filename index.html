@@ -619,6 +619,57 @@ const PROJECTS = [
     ]
   },
   {
+    id:"sketch2stl", cat:"Computation", title:"Sketch-to-STL", year:"2026",
+    image:"images/computation/stl/cropped.gif", fit:"contain",
+    tags:["AI/ML","Computer Vision","Tooling"],
+    sub:"Draw a part by hand, get a watertight STL — two models do the CAD translation.",
+    meta:{Collaborators:"Pakin Kittithanyakorn",Instructor:"Chris McComb",Context:"24-679 · Designing and Prototyping AI Systems · CMU",Stack:"Python, scikit-learn, PyTorch, ONNX, Gradio, trimesh",Completed:"Oct 2026"},
+    blocks:[
+      {html:`
+        <div class="lay">
+
+          <div class="trio">
+            <div class="txt">
+              <p class="tagline">The problem</p>
+              <h2>Everyone can draw the part; almost nobody can model it</h2>
+              <p class="body-copy">Turning a rough idea into a printable part still means learning sketch planes, constraints, extrude dialogs and mesh export. Most people can already draw what they want, the jump from that drawing to a printable file is guarded by a CAD learning curve. sketch2stl starts from the drawing: you sketch 2-D shapes with a mouse, and the app recognises them, cleans them up and builds a watertight STL.</p>
+            </div>
+
+            <div class="txt">
+              <p class="tagline">Two models</p>
+              <h2>One names the stroke, one decides the 3-D operation</h2>
+              <p class="body-copy">ML1 is a gradient-boosted classifier trained from scratch on 14,608 synthetic strokes derived from the Fusion 360 Gallery; from twelve geometric features it names each stroke a line, arc, circle, rectangle or polyline. ML2 is an ImageNet ResNet-18 fine-tuned on 6,911 CAD half-profiles, deciding whether a half-outline drawn against a centreline should be revolved or mirrored, the 3-D decision beginners most often get wrong. It ships as ONNX so the app needs no PyTorch at run time.</p>
+            </div>
+
+            <div class="txt">
+              <p class="tagline">What it cost, what it's worth</p>
+              <h2>Three actions instead of twelve, and the model shows its work</h2>
+              <p class="body-copy">ML1 reaches 0.964 macro-F1 on held-out synthetic strokes and 0.765 on 325 real hand-drawn ones; ML2 is right 96.6% of the time against a 55% rule baseline. A plate with two holes takes three actions here and about twelve in Fusion 360. Every model decision is drawn on the canvas with its confidence and can be overridden, because a wrong snap costs one click to fix rather than a broken part. The honest weak point is real polylines, read as rectangles at F1 0.36, the next thing to fix.</p>
+            </div>
+          </div>
+
+          <div class="pair">
+            <figure class="fig fill">
+              <img src="images/computation/stl/cropped.gif" alt="Half profile revolved into a turned part">
+              <figcaption>Half + centreline → ML2 picks Revolve</figcaption>
+            </figure>
+            <figure class="fig fill">
+              <img src="images/computation/stl/cropped_2.gif" alt="Sketched shapes extruded into a plate">
+              <figcaption>Free draw → ML1 names the shapes, Add volume extrudes</figcaption>
+            </figure>
+          </div>
+
+          <div class="btn-row">
+            <a class="btn" data-cur="link" href="https://colab.research.google.com/github/SunKaiwen1023/sketch2stl/blob/main/notebooks/run_app_colab.ipynb" target="_blank" rel="noopener">Try it in Colab <span aria-hidden="true">↗</span></a>
+            <a class="btn" data-cur="link" href="https://github.com/SunKaiwen1023/sketch2stl" target="_blank" rel="noopener">Source on GitHub <span aria-hidden="true">↗</span></a>
+            <a class="btn" data-cur="link" href="https://huggingface.co/pakiino/sketch2stl-recognizer" target="_blank" rel="noopener">Models on Hugging Face <span aria-hidden="true">↗</span></a>
+            <a class="btn" data-cur="link" href="https://huggingface.co/datasets/pakiino/sketch2stl-datasets" target="_blank" rel="noopener">Dataset <span aria-hidden="true">↗</span></a>
+          </div>
+
+        </div>`}
+    ]
+  },
+  {
     id:"gesture-to-robot", cat:"Computation", title:"Gesture-to-Robot Collaborative Drawing", year:"2026",
     image:"images/computation/air/air_profile.gif", tags:["Robotics","Computer Vision","AI/ML","Interaction"],
     sub:"A robot that watches you draw in the air and answers with a line of its own.",
